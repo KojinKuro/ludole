@@ -2,7 +2,7 @@ const ludos = [
     {
         "id": "472",
         "title": "The Elder Scrolls V: Skyrim",
-        "imagesrc": "/game/472.png",
+        "imagesrc": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1tnw.webp",
         "year": "2011",
         "genre": ["RPG", "Adventure"],
         "themes": ["Action", "Fanatasy", "Open world", "Sandbox", "Stealth"],
@@ -13,7 +13,7 @@ const ludos = [
     {
         "id": "1073",
         "title": "Super Mario World 2: Yoshi's Island",
-        "imagesrc": "/game/1073.png",
+        "imagesrc": "https://images.igdb.com/igdb/image/upload/t_cover_big/co2kn9.webp",
         "year": "1995",
         "genre": ["Platform"],
         "themes": ["Action", "Fantasy", "Kids"],
@@ -24,7 +24,7 @@ const ludos = [
     {
         "id": "418",
         "title": "Final Fantasy X",
-        "imagesrc": "/game/418.png",
+        "imagesrc": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1tr1.webp",
         "year": "2001",
         "genre": ["RPG", "Adventure"],
         "themes": ["Drama", "Fantasy", "Romance", "Science fiction",],
@@ -35,7 +35,7 @@ const ludos = [
     {
         "id": "1070",
         "title": "Super Mario World",
-        "imagesrc": "/game/1070.png",
+        "imagesrc": "https://images.igdb.com/igdb/image/upload/t_cover_big/co65za.webp",
         "year": "1990",
         "genre": ["Platform", "Adventure"],
         "themes": ["Action", "Fantasy"],
@@ -46,7 +46,7 @@ const ludos = [
     {
         "id": "427",
         "title": "Final Fantasy VII",
-        "imagesrc": "/game/427.png",
+        "imagesrc": "https://images.igdb.com/igdb/image/upload/t_cover_big/co2kx2.webp",
         "year": "1997",
         "genre": ["RPG", "TBS","Adventure"],
         "themes": ["Fantasy", "Science Fiction"],
@@ -57,7 +57,7 @@ const ludos = [
     {
         "id": "1942",
         "title": "The Witcher 3: Wild Hunt",
-        "imagesrc": "/game/1942.png",
+        "imagesrc": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1wyy.webp",
         "year": "2015",
         "genre": ["RPG", "Adventure"],
         "themes": ["Action", "Fantasy", "Open World", "", ""],
@@ -68,7 +68,7 @@ const ludos = [
     {
         "id": "204350",
         "title": "The Last of Us Part I",
-        "imagesrc": "/game/204350.png",
+        "imagesrc": "https://images.igdb.com/igdb/image/upload/t_cover_big/co5xex.webp",
         "year": "2022",
         "genre": ["Shooter", "Adventure"],
         "themes": ["Action", "Horror", "Stealth", "Survival"],
@@ -79,7 +79,7 @@ const ludos = [
     {
         "id": "119388",
         "title": "The Legend of Zelda: Tears of the Kingdom",
-        "imagesrc": "/game/119388.png",
+        "imagesrc": "https://images.igdb.com/igdb/image/upload/t_cover_big/co5vmg.webp",
         "year": "2023",
         "genre": ["RPG", "Adventure"],
         "themes": ["Action", "Fantasy", "Open world", "Science Fiction"],
@@ -90,7 +90,7 @@ const ludos = [
     {
         "id": "45181",
         "title": "Mass Effect Trilogy",
-        "imagesrc": "/game/45181.png",
+        "imagesrc": "https://images.igdb.com/igdb/image/upload/t_cover_big/co4a7a.webp",
         "year": "2012",
         "genre": ["Shooter", "RPG"],
         "themes": ["Action"],
@@ -101,7 +101,7 @@ const ludos = [
     {
         "id": "119133",
         "title": "Elden Ring",
-        "imagesrc": "/game/119133.png",
+        "imagesrc": "https://images.igdb.com/igdb/image/upload/t_cover_big/co4jni.webp",
         "year": "2022",
         "genre": ["RPG", "Adventure"],
         "themes": ["Action", "Fantasy", "Open world"],
@@ -112,7 +112,7 @@ const ludos = [
     {
         "id": "119171",
         "title": "Baldur's Gate 3",
-        "imagesrc": "/game/119171.png",
+        "imagesrc": "https://images.igdb.com/igdb/image/upload/t_cover_big/co670h.webp",
         "year": "2023",
         "genre": ["RPG", "Strategy", "TBS", "Tactical", "Adventure"],
         "themes": ["Action", "Fantasy"],
@@ -123,7 +123,7 @@ const ludos = [
     {
         "id": "7194",
         "title": "Steins;Gate",
-        "imagesrc": "/game/7194.png",
+        "imagesrc": "https://images.igdb.com/igdb/image/upload/t_cover_big/co5ff7.webp",
         "year": "2009",
         "genre": ["Adventure", "Visual Novel"],
         "themes": ["Fantasty", "Historical", "Mystery", "Science Fiction", "Survival"],
@@ -134,7 +134,7 @@ const ludos = [
     {
         "id": "114283",
         "title": "Persona 5 Royal",
-        "imagesrc": "/game/114283.png",
+        "imagesrc": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1nic.webp",
         "year": "2019",
         "genre": ["RPG", "TBS", "Adventure"],
         "themes": ["Action", "Fantasy"],
