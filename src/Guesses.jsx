@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
 import "./Guesses.css";
 
 //basing this off data from guessArray coming in to be ['guess string', '25' - 25 being the percentage correct] - Hopefully that works
 
-export default function Guesses({ guessArray }) {
-  const boxes = Array(8).fill("");
+export default function Guesses({ guessArray = [] }) {
+  const MAX_GUESSES = 8;
+  if (guessArray.length > MAX_GUESSES) return;
 
   const getColorClass = (number) => {
     if (number === 0) {
@@ -20,19 +20,18 @@ export default function Guesses({ guessArray }) {
     }
   };
 
-  if (guessArray && guessArray.length === 2 && guessArray[0] !== "") {
-    const [guess, numberStr] = guessArray;
-    const number = parseInt(numberStr);
-    boxes[0] = <div className={`box ${getColorClass(number)}`}>{guess}</div>;
-  }
+  const emptyBoxNumber = MAX_GUESSES - guessArray.length;
+  const boxes = [...guessArray, ...Array(emptyBoxNumber).fill(["", 0])];
 
-  return (
-    <div className="container">
-      {boxes.map((box, index) => (
-        <div key={index} className="box">
-          {box}
-        </div>
-      ))}
-    </div>
-  );
+  const boxElements = boxes.map((box, index) => {
+    const [guess, numberStr] = box;
+    const number = parseInt(numberStr);
+    return (
+      <div key={index}>
+        <div className={`box ${getColorClass(number)}`}>{guess}</div>
+      </div>
+    )
+  })
+
+  return <div className="container">{boxElements}</div>;
 }
