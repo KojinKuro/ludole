@@ -2,11 +2,10 @@ export function createGuess(name, amount) {
   return [name, parseInt(amount)];
 }
 
-// will return a number from 0 to 100
 export function compareGuesses(guessGame, correctGame) {
   if (!guessGame || !correctGame) return 0;
   if (guessGame.id === correctGame.id) return 100;
-
+  // we test for 7 categories and 7 * 14 = 98 which is the closest to 100
   const MAX_CATEGORY_POINTS = 14;
   let pointTotal = 0;
 
@@ -35,21 +34,3 @@ export function compareGuesses(guessGame, correctGame) {
 
   return pointTotal;
 }
-
-/*
-
-  {
-    id: 472,
-    imagesrc:
-      "https://images.igdb.com/igdb/image/upload/t_cover_big/co1tnw.webp",
-
-    title: "The Elder Scrolls V: Skyrim",
-    year: 2011,
-    genre: ["RPG", "Adventure"],
-    themes: ["Action", "Fanatasy", "Open world", "Sandbox", "Stealth"],
-    console: ["PC", "PlayStation 3", "Xbox 360"],
-    developer: ["Bethesda Game Studios"],
-    publisher: ["Bethesda Softworks"],
-  },
-
-*/

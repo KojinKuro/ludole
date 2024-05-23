@@ -14,7 +14,7 @@ export default function Game({ games, totalGuesses = 8 }) {
   const [gameError, setGameError] = useState(false);
   const [hasWon, setHasWon] = useState(false);
 
-  const answerGame = useRef(games[Math.floor(Math.random() * games.length)]);
+  const answer = useRef(games[Math.floor(Math.random() * games.length)]);
 
   const addGuess = (guess) => {
     setGuessHistory((prevHistory) => [...prevHistory, guess]);
@@ -22,13 +22,13 @@ export default function Game({ games, totalGuesses = 8 }) {
 
   const checkGuess = () => {
     if (hasWon) return;
-    const guessGame = findGameObject(guessInput, games);
-    if(!guessGame) {
+    const guess = findGameObject(guessInput, games);
+    if(!guess) {
       setGameError(true);
       return;
     }
   
-    const evaluation = compareGuesses(guessGame, answerGame.current);
+    const evaluation = compareGuesses(guess, answer.current);
     if (evaluation === 100) setHasWon(true);
     addGuess(createGuess(guessInput, evaluation));
     setGuessCount((prevCount) => prevCount + 1);
@@ -45,7 +45,7 @@ export default function Game({ games, totalGuesses = 8 }) {
       <ImageBlur
         width="500px"
         height="500px"
-        src={answerGame.current.imagesrc}
+        src={answer.current.imagesrc}
         alt="Mario game image"
         blur={hasWon ? 0 : 50 * (1 - guessCount / totalGuesses)}
       />
