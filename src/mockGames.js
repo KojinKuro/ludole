@@ -1,4 +1,4 @@
-const ludos = [
+export const games = [
   {
     id: 472,
     title: "The Elder Scrolls V: Skyrim",
