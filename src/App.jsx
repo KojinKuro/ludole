@@ -1,8 +1,7 @@
-import { useState } from 'react'
-import './App.css'
-import Guesses from './Guesses'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useState } from 'react';
+import './App.css';
+import Guesses from './Guesses';
+import ImageBlur from './components/ImageBlur/ImageBlur';
 
 function App() {
   return (
@@ -11,11 +10,12 @@ function App() {
         <h1>LUDOLE</h1>
       </header>
       <main>
-        <img
+        <ImageBlur 
+          width="500px" 
+          height="500px" 
           src="./mario.webp"
           alt="Mario game image"
-          width="500px"
-          height="500px"
+          blur={100}
         />
         <div className="attempt-container">Attempts component</div>
         <input type="text" placeholder="place your guess here ..." />
