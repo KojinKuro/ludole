@@ -1,4 +1,8 @@
-import "./App.css";
+import { useState } from 'react'
+import './App.css'
+import Guesses from './Guesses'
+import reactLogo from './assets/react.svg'
+import viteLogo from '/vite.svg'
 
 function App() {
   return (
@@ -15,7 +19,7 @@ function App() {
         />
         <div className="attempt-container">Attempts component</div>
         <input type="text" placeholder="place your guess here ..." />
-        <div className="guess-container">Guesses history component</div>
+        <Guesses guessArray={[["swrod", 1]]}/>
       </main>
       <footer>
         Coded by Brandon Doza, Charles Kwang, Gwyenth Patrick, Lydia S
