@@ -27,11 +27,11 @@ export default function Guesses({ guessArray = [] }) {
     const [guess, numberStr] = box;
     const number = parseInt(numberStr);
     return (
-      <div key={index}>
-        <div className={`box ${getColorClass(number)}`}>{guess}</div>
+      <div key={index} className={`box ${getColorClass(number)}`}>
+        {guess}
       </div>
-    )
-  })
+    );
+  });
 
   return <div className="container">{boxElements}</div>;
 }
