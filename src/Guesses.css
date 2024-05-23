@@ -18,17 +18,17 @@
   }
 
   .box.red {
-    background-color: red;
+    background-color: rgb(240, 167, 167);
   }
   
   .box.yellow {
-    background-color: yellow;
+    background-color: rgb(237, 237, 158);
   }
   
   .box.blue {
-    background-color: blue;
+    background-color: rgb(158, 158, 239);
   }
   
   .box.green {
-    background-color: green;
+    background-color: rgb(169, 237, 169);
   }

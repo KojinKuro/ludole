@@ -4,26 +4,7 @@ import "./Guesses.css";
 //basing this off data from guessArray coming in to be ['guess string', '25' - 25 being the percentage correct] - Hopefully that works
 
 export default function Guesses({ guessArray }) {
-  const [boxes, setBoxes] = useState(Array(8).fill(""));
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  useEffect(() => {
-    if (guessArray && guessArray.length === 2 && guessArray[0] !== "") {
-      const [guess, numberStr] = guessArray;
-      const number = parseInt(numberStr);
-      console.log("number", number);
-
-      setBoxes((prevBoxes) => {
-        const newBoxes = [...prevBoxes];
-        newBoxes[currentIndex] = (
-          <div className={`box ${getColorClass(number)}`}>{guess}</div>
-        );
-        return newBoxes;
-      });
-
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % 8);
-    }
-  }, [guessArray]);
+  const boxes = Array(8).fill("");
 
   const getColorClass = (number) => {
     if (number === 0) {
@@ -34,10 +15,16 @@ export default function Guesses({ guessArray }) {
       return "yellow";
     } else if (number >= 51 && number <= 75) {
       return "blue";
-    } else if (number >= 76 && number <= 99) {
+    } else if (number >= 76 && number <= 100) {
       return "green";
     }
   };
+
+  if (guessArray && guessArray.length === 2 && guessArray[0] !== "") {
+    const [guess, numberStr] = guessArray;
+    const number = parseInt(numberStr);
+    boxes[0] = <div className={`box ${getColorClass(number)}`}>{guess}</div>;
+  }
 
   return (
     <div className="container">
