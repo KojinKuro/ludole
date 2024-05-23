@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import "./Guesses.css";
 
+//basing this off data from guessArray coming in to be ['guess string', '25' - 25 being the percentage correct] - Hopefully that works
+
 export default function Guesses({ guessArray }) {
   const [boxes, setBoxes] = useState(Array(8).fill(""));
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -39,8 +41,6 @@ export default function Guesses({ guessArray }) {
 
   return (
     <div className="container">
-      {" "}
-      {/* Apply the container class */}
       {boxes.map((box, index) => (
         <div key={index} className="box">
           {box}
