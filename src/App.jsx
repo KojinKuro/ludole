@@ -1,8 +1,6 @@
-import { useState } from 'react'
-import './App.css'
-import Guesses from './Guesses'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import "./App.css";
+import Game from "./components/Game/Game";
+import { games } from "./mockGames";
 
 function App() {
   return (
@@ -11,18 +9,10 @@ function App() {
         <h1>LUDOLE</h1>
       </header>
       <main>
-        <img
-          src="./mario.webp"
-          alt="Mario game image"
-          width="500px"
-          height="500px"
-        />
-        <div className="attempt-container">Attempts component</div>
-        <input type="text" placeholder="place your guess here ..." />
-        <Guesses guessArray={[["swrod", 1]]}/>
+        <Game games={games} />
       </main>
       <footer>
-        Coded by Brandon Doza, Charles Kwang, Gwyenth Patrick, Lydia S
+        Coded by Brandon Doza, Charles Kwang, Gwyneth Patrick, Lydia S
       </footer>
     </>
   );

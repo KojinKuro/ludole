@@ -2,8 +2,8 @@ import "./Guesses.css";
 
 //basing this off data from guessArray coming in to be ['guess string', '25' - 25 being the percentage correct] - Hopefully that works
 
-export default function Guesses({ guessArray = [] }) {
-  const MAX_GUESSES = 8;
+export default function Guesses({ totalGuesses = 8, guessArray = [] }) {
+  const MAX_GUESSES = totalGuesses;
   if (guessArray.length > MAX_GUESSES) return;
 
   const getColorClass = (number) => {
@@ -27,11 +27,11 @@ export default function Guesses({ guessArray = [] }) {
     const [guess, numberStr] = box;
     const number = parseInt(numberStr);
     return (
-      <div key={index}>
-        <div className={`box ${getColorClass(number)}`}>{guess}</div>
+      <div key={index} className={`guess ${getColorClass(number)}`}>
+        {guess}
       </div>
-    )
-  })
+    );
+  });
 
-  return <div className="container">{boxElements}</div>;
+  return <div className="guess-container">{boxElements}</div>;
 }
