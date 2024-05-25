@@ -9,10 +9,8 @@ function App() {
   return (
     <>
       <header>
-        <Link to="/">
+        <Link to="/" style={{ display: "flex", alignItems: "center" }}>
           <box-icon color="white" type="solid" name="invader" />
-        </Link>
-        <Link to="/">
           <h1>LUDOLE</h1>
         </Link>
         <nav>
