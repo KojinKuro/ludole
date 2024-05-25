@@ -5,6 +5,7 @@ import GameStatus from "../GameStatus/GameStatus";
 import Guesses from "../Guesses/Guesses";
 import ImageBlur from "../ImageBlur/ImageBlur";
 import "./Game.css";
+import PropTypes from "prop-types"
 
 export default function Game({ games, totalGuesses = 8 }) {
   const [guessCount, setGuessCount] = useState(0);
@@ -69,3 +70,22 @@ export default function Game({ games, totalGuesses = 8 }) {
     </main>
   );
 }
+
+const gamesPropTypes = PropTypes.arrayOf(
+  PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    imagesrc: PropTypes.string.isRequired,
+    year: PropTypes.number.isRequired,
+    genre: PropTypes.arrayOf(PropTypes.string).isRequired,
+    themes: PropTypes.arrayOf(PropTypes.string).isRequired,
+    console: PropTypes.arrayOf(PropTypes.string).isRequired,
+    developer: PropTypes.arrayOf(PropTypes.string).isRequired,
+    publisher: PropTypes.arrayOf(PropTypes.string).isRequired,
+  })
+);
+
+Game.propTypes = {
+  games: gamesPropTypes.isRequired,
+  totalGuesses: PropTypes.number,
+};
