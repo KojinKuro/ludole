@@ -1,5 +1,6 @@
 //basing props coming in off:
 // ex: 3, 9, true
+import PropTypes from "prop-types"
 
 import "./GameStatus.css";
 
@@ -14,4 +15,10 @@ export default function GameStatus({ numGuesses, totalGuesses, hasWon }) {
     }
   };
   return <div className="game-status">{getDisplay()}</div>;
+}
+
+GameStatus.propTypes = {
+  numGuesses: PropTypes.number.isRequired,
+  totalGuesses: PropTypes.number.isRequired,
+  hasWon: PropTypes.bool.isRequired
 }

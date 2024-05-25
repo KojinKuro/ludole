@@ -1,4 +1,5 @@
 import "./Guesses.css";
+import PropTypes from "prop-types";
 
 //basing this off data from guessArray coming in to be ['guess string', '25' - 25 being the percentage correct] - Hopefully that works
 
@@ -35,3 +36,13 @@ export default function Guesses({ totalGuesses = 8, guessArray = [] }) {
 
   return <div className="guess-container">{boxElements}</div>;
 }
+
+Guesses.propTypes = {
+  totalGuesses: PropTypes.number,
+  guessArray: PropTypes.arrayOf(
+    PropTypes.oneOfType([
+      PropTypes.string, // assuming guess string
+      PropTypes.oneOfType([PropTypes.string, PropTypes.number]), // assuming percentage string or number
+    ])
+  ),
+};
