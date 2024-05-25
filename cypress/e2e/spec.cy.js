@@ -12,18 +12,18 @@ describe('Landing page game.', () => {
   it('As a user if I make a guess that is not currently in the possible titles, I will receive a message that my guess is invalid.', () => {
     cy.get('input')
     .type('hello')
-    cy.get('button')
+    .get('button')
     .click()
-    cy.get('#game > :nth-child(3)')
+    .get('#game > :nth-child(3)')
     .should('contain', 'Could not find your game')
   });
   it('As a user once I make an acceptable guess this should be reflected on the page.', ()=>{
     cy.get('input')
-    .type("Super Mario World 2: Yoshi's Island")
-    cy.get('button')
+    .type("The Elder Scrolls V: Skyrim")
+    .get('button')
     .click()
-    cy.get('h2')
-    .should('contain', 'Attempts 1/8')
+    .get('h2')
+    .should('contain', '1/8')
   });
   it('If I have not made a guess, the image should be fully blurred',()=>{
     cy.get('img')
@@ -31,14 +31,46 @@ describe('Landing page game.', () => {
     .should('contain', '50px')
   });
 });
-
-//The below code will be available to implement once we have api calls to intercept.
-/**  it('As a user if I guess correctly my guess should highlight in green.',()=>{
-    cy.get('input')
-    .type("Super Mario World 2: Yoshi's Island")
-    cy.get('button')
-    .click()
+/**
+//The below code will be available to implement once we have api calls to intercept, it was tested by editing mock data to only include the first .
+describe('Correct guesses tests',()=>{
+  beforeEach(()=>{
+    //get intercept goes here
+    cy.visit('http://127.0.0.1:5173/')
+    .get('input')
+    .type("The Elder Scrolls V: Skyrim")
+    .get('button')
+    .click();
+  });
+  it('If I make a correct guess, the image should no longer be blurred.',()=>{
+    cy.get('img')
+    .invoke('attr','style')
+    .should('contain', 'blur(0px)');
+  });
+  it('If I make a correct guess, the text should change from Attempts to Solved',()=>{
+    cy.get('h2')
+    .should('contain', 'Solved');
+  });
+  it('As a user if I guess correctly my guess should highlight in green.',()=>{
     cy.get('.guess-container > :nth-child(1)')
     .invoke('attr','class')
-    .should('contain', 'green')
-  }) */
+    .should('contain', 'green');
+  });
+  it('If I have already solved the puzzle trying to guess again should not be possible',()=>{
+    cy.get('input')
+    .type("The Elder Scrolls V: Skyrim")
+    .get('button')
+    .click()
+    .get('.guess-container > :nth-child(2)')
+    .invoke('attr','class')
+    .should('contain', 'grey');
+  });
+});
+
+
+future tests:
+- network errors
+- loading page
+- routing tests
+ */
+
