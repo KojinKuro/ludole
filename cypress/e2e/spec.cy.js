@@ -16,7 +16,7 @@ describe('Landing page game.', () => {
     .click()
     cy.get('#game > :nth-child(3)')
     .should('contain', 'Could not find your game')
-  })
+  });
   it('As a user once I make an acceptable guess this should be reflected on the page.', ()=>{
     cy.get('input')
     .type("Super Mario World 2: Yoshi's Island")
@@ -24,9 +24,14 @@ describe('Landing page game.', () => {
     .click()
     cy.get('h2')
     .should('contain', 'Attempts 1/8')
-  })
-
+  });
+  it('If I have not made a guess, the image should be fully blurred',()=>{
+    cy.get('img')
+    .invoke('attr','style')
+    .should('contain', '50px')
+  });
 });
+
 //The below code will be available to implement once we have api calls to intercept.
 /**  it('As a user if I guess correctly my guess should highlight in green.',()=>{
     cy.get('input')
