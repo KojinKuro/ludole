@@ -1,10 +1,10 @@
 import { useRef, useState } from "react";
-import { findGameObject } from "../../javascript/game";
-import { compareGuesses, createGuess } from "../../javascript/guess";
-import GameStatus from "../GameStatus/GameStatus";
-import Guesses from "../Guesses/Guesses";
-import ImageBlur from "../ImageBlur/ImageBlur";
-import "./Game.css";
+import GameStatus from "../components/GameStatus/GameStatus";
+import Guesses from "../components/Guesses/Guesses";
+import ImageBlur from "../components/ImageBlur/ImageBlur";
+import { findGameObject } from "../javascript/game";
+import { compareGuesses, createGuess } from "../javascript/guess";
+import "./GamePage.css";
 
 export default function Game({ games, totalGuesses = 8 }) {
   const [guessCount, setGuessCount] = useState(0);
@@ -23,11 +23,11 @@ export default function Game({ games, totalGuesses = 8 }) {
   const checkGuess = () => {
     if (hasWon) return;
     const guess = findGameObject(guessInput, games);
-    if(!guess) {
+    if (!guess) {
       setGameError(true);
       return;
     }
-  
+
     const evaluation = compareGuesses(guess, answer.current);
     if (evaluation === 100) setHasWon(true);
     addGuess(createGuess(guessInput, evaluation));
@@ -36,9 +36,9 @@ export default function Game({ games, totalGuesses = 8 }) {
   };
 
   const handleInput = (e) => {
-    if(gameError) setGameError(false);
+    if (gameError) setGameError(false);
     setGuessInput(e.target.value);
-  }
+  };
 
   return (
     <main id="game">
@@ -57,7 +57,9 @@ export default function Game({ games, totalGuesses = 8 }) {
       {gameError && <div>Could not find your game</div>}
       <div>
         <input
-          onKeyDown={(e) => { if (e.key === "Enter") checkGuess(); }}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") checkGuess();
+          }}
           onChange={handleInput}
           type="text"
           placeholder="place your guess here ..."
