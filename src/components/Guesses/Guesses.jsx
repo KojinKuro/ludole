@@ -38,11 +38,13 @@ export default function Guesses({ totalGuesses = 8, guessArray = [] }) {
 }
 
 Guesses.propTypes = {
-  totalGuesses: PropTypes.number,
+  totalGuesses: PropTypes.number.isRequired,
   guessArray: PropTypes.arrayOf(
-    PropTypes.oneOfType([
-      PropTypes.string, // assuming guess string
-      PropTypes.oneOfType([PropTypes.string, PropTypes.number]), // assuming percentage string or number
-    ])
-  ),
+    PropTypes.arrayOf(
+      PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number
+      ])
+    )
+  ).isRequired,
 };
