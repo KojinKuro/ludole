@@ -9,13 +9,14 @@ describe('Landing page game.', () => {
   beforeEach(()=>{
     cy.visit('http://127.0.0.1:5173/')
   });
-  it('As a user if I make a guess that is not currently in the possible titles, I will receive a message that my guess is invalid.', () => {
+  it('As a user if I make a guess that is not currently in the possible titles, my guess will not be processed.', () => {
     cy.get('input')
     .type('hello')
     .get('button')
     .click()
-    .get('#game > :nth-child(3)')
-    .should('contain', 'Could not find your game')
+    cy.get('.guess-container > :nth-child(1)')
+    .invoke('attr','class')
+    .should('contain', 'grey');
   });
   it('As a user once I make an acceptable guess this should be reflected on the page.', ()=>{
     cy.get('input')
