@@ -1,0 +1,8 @@
+.search-result {
+  background-color: white;
+}
+
+.search-result.selected,
+.search-result:hover {
+  background-color: var(--main-color);
+}

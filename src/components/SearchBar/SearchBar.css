@@ -1,0 +1,18 @@
+.search-bar-root {
+  display: flex;
+  flex-direction: row;
+}
+
+.search-bar-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  width: 200px;
+}
+
+.search-results-container {
+  position: absolute;
+  top: 45px;
+  width: 100%;
+}
