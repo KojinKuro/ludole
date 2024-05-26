@@ -10,14 +10,22 @@
 .guess {
   width: 100%;
   height: 100%;
-
   border: 1px solid black;
   background-color: rgba(217, 217, 217, 0.25);
-
   display: flex;
-  justify-content: center;
   align-items: center;
+  overflow: hidden; 
+  white-space: nowrap; 
+  text-overflow: ellipsis; 
+  font-size: 1.4vw; 
 }
+
+.guess p {
+  margin: 2px;
+  word-wrap: break-word; 
+  word-break: break-all; 
+}
+
 
 .guess.red {
   background-color: rgb(240, 167, 167);
