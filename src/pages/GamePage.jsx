@@ -1,18 +1,17 @@
+import PropTypes from "prop-types";
 import { useRef, useState } from "react";
-import { findGameObject } from "../../javascript/game";
-import { compareGuesses, createGuess } from "../../javascript/guess";
-import GameStatus from "../GameStatus/GameStatus";
-import Guesses from "../Guesses/Guesses";
-import ImageBlur from "../ImageBlur/ImageBlur";
-import "./Game.css";
-import PropTypes from "prop-types"
+import GameStatus from "../components/GameStatus/GameStatus";
+import Guesses from "../components/Guesses/Guesses";
+import ImageBlur from "../components/ImageBlur/ImageBlur";
+import SearchBar from "../components/SearchBar/SearchBar";
+import { findGameObject } from "../javascript/game";
+import { compareGuesses, createGuess } from "../javascript/guess";
+import "./GamePage.css";
 
-export default function Game({ games, totalGuesses = 8 }) {
+export default function GamePage({ games, totalGuesses = 8 }) {
   const [guessCount, setGuessCount] = useState(0);
   const [guessHistory, setGuessHistory] = useState([]);
-  const [guessInput, setGuessInput] = useState("");
 
-  const [gameError, setGameError] = useState(false);
   const [hasWon, setHasWon] = useState(false);
 
   const answer = useRef(games[Math.floor(Math.random() * games.length)]);
@@ -21,25 +20,16 @@ export default function Game({ games, totalGuesses = 8 }) {
     setGuessHistory((prevHistory) => [...prevHistory, guess]);
   };
 
-  const checkGuess = () => {
-    if (hasWon) return;
+  const checkGuess = (guessInput) => {
+    if (hasWon || guessCount == totalGuesses) return;
     const guess = findGameObject(guessInput, games);
-    if(!guess) {
-      setGameError(true);
-      return;
-    }
-  
+    if (!guess) return;
+
     const evaluation = compareGuesses(guess, answer.current);
     if (evaluation === 100) setHasWon(true);
     addGuess(createGuess(guessInput, evaluation));
     setGuessCount((prevCount) => prevCount + 1);
-    setGuessInput("");
   };
-
-  const handleInput = (e) => {
-    if(gameError) setGameError(false);
-    setGuessInput(e.target.value);
-  }
 
   return (
     <main id="game">
@@ -55,17 +45,7 @@ export default function Game({ games, totalGuesses = 8 }) {
         totalGuesses={totalGuesses}
         hasWon={hasWon}
       />
-      {gameError && <div>Could not find your game</div>}
-      <div>
-        <input
-          onKeyDown={(e) => { if (e.key === "Enter") checkGuess(); }}
-          onChange={handleInput}
-          type="text"
-          placeholder="place your guess here ..."
-          value={guessInput}
-        />
-        <button onClick={checkGuess}>Submit</button>
-      </div>
+      <SearchBar games={games} onSearch={checkGuess} />
       <Guesses totalGuesses={totalGuesses} guessArray={guessHistory} />
     </main>
   );
@@ -85,7 +65,7 @@ const gamesPropTypes = PropTypes.arrayOf(
   })
 );
 
-Game.propTypes = {
+GamePage.propTypes = {
   games: gamesPropTypes.isRequired,
   totalGuesses: PropTypes.number,
 };

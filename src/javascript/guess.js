@@ -2,35 +2,30 @@ export function createGuess(name, amount) {
   return [name, parseInt(amount)];
 }
 
-export function compareGuesses(guessGame, correctGame) {
-  if (!guessGame || !correctGame) return 0;
-  if (guessGame.id === correctGame.id) return 100;
-  // we test for 7 categories and 7 * 14 = 98 which is the closest to 100
-  const MAX_CATEGORY_POINTS = 14;
-  let pointTotal = 0;
+export function compareGuesses(guess, answer) {
+  if (!guess || !answer) return 0;
+  if (guess.id === answer.id) return 100;
 
-  const calculateSimilarityRatio = (category) => {
+  // we test for 7 categories and 7 * 14 = 98 which is the closest to 100
+  const MAX_POINTS = 14;
+  let points = 0;
+
+  const calculateSimilarity = (comparisonArray, targetArray) => {
     return (
-      guessGame[category].filter((item) => correctGame[category].includes(item))
-        .length / correctGame[category].length
+      comparisonArray.filter((item) => targetArray.includes(item)).length /
+      targetArray.length
     );
   };
 
-  // get point totals
-  const TITLE_SIMILARITY_RATIO =
-    guessGame.title
-      .split(" ")
-      .filter((word) => correctGame.title.includes(word)).length /
-    correctGame.title.split(" ").length;
-  pointTotal += MAX_CATEGORY_POINTS * TITLE_SIMILARITY_RATIO;
+  points +=
+    MAX_POINTS *
+    calculateSimilarity(guess.title.split(" "), answer.title.split(" "));
+  points += MAX_POINTS * calculateSimilarity(guess.genre, answer.genre);
+  points += MAX_POINTS * calculateSimilarity(guess.themes, answer.themes);
+  points += MAX_POINTS * calculateSimilarity(guess.console, answer.console);
+  points += MAX_POINTS * calculateSimilarity(guess.developer, answer.developer);
+  points += MAX_POINTS * calculateSimilarity(guess.publisher, answer.publisher);
+  if (guess.year === answer.year) points += MAX_POINTS;
 
-  if (guessGame.year === correctGame.year) pointTotal += MAX_CATEGORY_POINTS;
-
-  pointTotal += MAX_CATEGORY_POINTS * calculateSimilarityRatio("genre");
-  pointTotal += MAX_CATEGORY_POINTS * calculateSimilarityRatio("themes");
-  pointTotal += MAX_CATEGORY_POINTS * calculateSimilarityRatio("console");
-  pointTotal += MAX_CATEGORY_POINTS * calculateSimilarityRatio("developer");
-  pointTotal += MAX_CATEGORY_POINTS * calculateSimilarityRatio("publisher");
-
-  return pointTotal;
+  return points;
 }
