@@ -8,7 +8,7 @@ export function compareGuesses(guess, answer) {
 
   // we test for 7 categories and 7 * 14 = 98 which is the closest to 100
   const MAX_POINTS = 14;
-  let points = 0;
+  let points = 1;
 
   const calculateSimilarity = (comparisonArray, targetArray) => {
     return (
