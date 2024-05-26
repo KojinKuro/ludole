@@ -1,6 +1,10 @@
+import "./AboutPage.css"
+
 export default function AboutPage() {
   return (
-    <main>
+    <main className="about">
+      <box-icon color="rgba(147, 89, 222, 0.1)" type='solid' name='invader'size="500px"></box-icon>
+      <section>
       <h1>About</h1>
 
       <h2>About Ludole</h2>
@@ -19,8 +23,6 @@ export default function AboutPage() {
         together to create a unique and enjoyable gaming experience. Our mission
         is to bring the gaming community closer through fun puzzles.
       </p>
-      <h3>Brandon Doza</h3>
-      <p>Insert some text about yourself.</p>
       <h3>Charles Kwang</h3>
       <p>
         Charles Kwang is a 27-year-old software engineer based in Los Angeles,
@@ -32,8 +34,10 @@ export default function AboutPage() {
       <p>Insert some text about yourself.</p>
       <h3>Lydia Simons</h3>
       <p>Insert some text about yourself.</p>
-
+      <h3>Brandon Doza</h3>
+      <p>Brandon is a software developer based in Denver, Colorado. He has a background in finance and photography, which bring a keen eye and attention to detail that shows in his work.</p>
       <div>Thank you for checking out Ludole. Let the guessing begin!</div>
+      </section>
     </main>
   );
 }

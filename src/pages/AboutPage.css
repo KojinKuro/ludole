@@ -1,0 +1,11 @@
+.about {
+    width: 50%;
+    margin-top: 25px;
+    }
+
+    .about box-icon {
+        position: absolute; /* Position the box icon */
+        bottom: -80px; /* Position the icon at the bottom */
+        left: 85px; /* Position the icon at the left */
+        z-index: -1; /* Ensure the icon is behind all other content */
+      }
