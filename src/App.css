@@ -32,7 +32,7 @@ header {
 }
 
 h1 {
-  margin: 0; /* Remove default margin */
+  margin: 0; 
 }
 
 nav {
@@ -45,10 +45,9 @@ nav {
 }
 
 nav a {
-  margin-left: 10px; /* Adjust as needed */
-  color: black; /* Change color as needed */
+  margin-left: 10px; 
+  color: black; 
 }
-
 
 main {
   flex: 1;
