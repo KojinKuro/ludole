@@ -7,8 +7,8 @@
   display: flex;
   flex-direction: column;
   position: relative;
-
-  width: 200px;
+  width: 255px;
+  height: 33px;
 }
 
 .search-results-container {
