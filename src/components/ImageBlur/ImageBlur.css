@@ -8,3 +8,17 @@
     overflow: hidden;
   }
 }
+
+@media (max-width: 430px) {
+  .image-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    max-width: 430px; 
+  }
+
+  .image-container img {
+    width: 75%; 
+    height: auto; 
+  }
+}
