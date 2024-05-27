@@ -65,13 +65,8 @@ footer {
 }
 
 @media (max-width: 430px) {
-  header {
-    width: 100%
-  }
   footer {
-    width: 100vw;
-    text-align: center;
-    font-size: 0.65em;
+    font-size: 0.55em;
   }
 
   .logo {

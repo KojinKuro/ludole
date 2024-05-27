@@ -36,7 +36,7 @@ export default function AboutPage() {
       <p>Insert some text about yourself.</p>
       <h3>Brandon Doza</h3>
       <p>Brandon is a software developer based in Denver, Colorado. He has a background in finance and photography, which bring a keen eye and attention to detail that shows in his work.</p>
-      <div>Thank you for checking out Ludole. Let the guessing begin!</div>
+      <p>Thank you for checking out Ludole. Let the guessing begin!</p>
       </section>
     </main>
   );

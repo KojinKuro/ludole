@@ -15,7 +15,7 @@ export default function InstructionPage() {
           Each time you guess incorrectly, the game will become less obscured.
         </li>
       </ul>
-      <div>Every day at midnight a new puzzle will unlock.</div>
+      <p>Every day at midnight a new puzzle will unlock.</p>
     </main>
   );
 }

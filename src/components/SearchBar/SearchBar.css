@@ -6,6 +6,7 @@
 .search-bar-container {
   display: flex;
   flex-direction: column;
+  align-items: center;
   position: relative;
   width: 255px;
   height: 33px;
@@ -15,4 +16,12 @@
   position: absolute;
   top: 45px;
   width: 100%;
+}
+
+@media (max-width: 430px) {
+  input {
+    width: 275px;
+    font-size: large;
+    border: 1px solid black;
+  }
 }
