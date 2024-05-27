@@ -32,6 +32,7 @@ describe('Landing page game.', () => {
     .should('contain', '50px')
   });
 });
+
 /**
 //The below code will be available to implement once we have api calls to intercept, it was tested by editing mock data to only include the first .
 describe('Correct guesses tests',()=>{
@@ -67,11 +68,4 @@ describe('Correct guesses tests',()=>{
     .should('contain', 'grey');
   });
 });
-
-
-future tests:
-- network errors
-- loading page
-- routing tests
- */
 
