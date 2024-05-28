@@ -12,7 +12,7 @@ export default function ImageBlur({
   const blurAmount = (parseInt(width.split("px")) * blur) / BLUR_FACTOR;
 
   return (
-    <div style={{ width, height }} className="image-container">
+    <div className="image-container">
       <img src={src} alt={alt} style={{ filter: `blur(${blurAmount}px)` }} />
     </div>
   );

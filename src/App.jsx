@@ -9,18 +9,18 @@ function App() {
   return (
     <>
       <header>
-        <Link to="/" style={{ display: "flex", alignItems: "center" }}>
-          <box-icon color="white" type="solid" name="invader" />
+        <Link to="/" className="logo">
+          <box-icon color="white" type="solid" name="invader" size="md" />
           <h1>LUDOLE</h1>
         </Link>
         <nav>
           {/* <box-icon color="white" type="solid" name="calendar" />
           <box-icon color="white" name="bar-chart-alt-2" type="solid" /> */}
           <NavLink to="/about">
-            <box-icon color="white" name="info-circle" />
+            <box-icon color="black" name="info-circle" />
           </NavLink>
           <NavLink to="/howto">
-            <box-icon color="white" type="solid" name="help-circle" />
+            <box-icon color="black" type="solid" name="help-circle" />
           </NavLink>
         </nav>
       </header>

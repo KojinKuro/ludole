@@ -73,7 +73,7 @@ export default function SearchBar({ games, onSearch = () => {} }) {
   return (
     <div className="search-bar-root">
       <div className="search-bar-container">
-        <label htmlFor="search-bar">Game Input</label>
+        {/* <label htmlFor="search-bar">Game Input</label> */}
         <input
           ref={inputRef}
           onKeyDown={handleKey}
@@ -87,7 +87,7 @@ export default function SearchBar({ games, onSearch = () => {} }) {
           <div className="search-results-container">{searchResultsJSX}</div>
         )}
       </div>
-      <button onClick={() => submitSearch(searchInput)}>Submit</button>
+      {/* <button onClick={() => submitSearch(searchInput)}>Submit</button> */}
     </div>
   );
 }

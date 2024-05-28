@@ -1,8 +1,10 @@
+import "./InstructionPage.css"
+
 export default function InstructionPage() {
   return (
-    <main>
+    <main className="instructions">
       <h1> How to Play</h1>
-      <div>Guess the video game in 9 tries</div>
+      <div>Guess the video game in 8 tries</div>
       <ul>
         <li>Each guess must be a valid game from our database.</li>
         <li>
@@ -13,7 +15,7 @@ export default function InstructionPage() {
           Each time you guess incorrectly, the game will become less obscured.
         </li>
       </ul>
-      <div>Every day at midnight a new puzzle will unlock.</div>
+      <p>Every day at midnight a new puzzle will unlock.</p>
     </main>
   );
 }

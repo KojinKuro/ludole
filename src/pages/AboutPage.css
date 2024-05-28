@@ -1,0 +1,17 @@
+.about {
+    width: 50%;
+    margin-top: 25px;
+    }
+
+    .about box-icon {
+        position: absolute; 
+        bottom: -80px; 
+        left: 85px;
+        z-index: -1; 
+      }
+
+@media (max-width: 430px) {
+    h1, h2, h3 {
+        text-align: center;
+    }
+}
