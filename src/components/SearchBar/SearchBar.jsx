@@ -87,7 +87,7 @@ export default function SearchBar({ games, onSearch = () => {} }) {
           <div className="search-results-container">{searchResultsJSX}</div>
         )}
       </div>
-      {/* <button onClick={() => submitSearch(searchInput)}>Submit</button> */}
+      <button onClick={() => submitSearch(searchInput)}>Submit</button>
     </div>
   );
 }
