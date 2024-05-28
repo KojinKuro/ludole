@@ -4,8 +4,11 @@ import { games } from "./mockGames";
 import AboutPage from "./pages/AboutPage";
 import GamePage from "./pages/GamePage";
 import InstructionPage from "./pages/InstructionPage";
+import { useEffect, useState } from "react";
 
 function App() {
+  const [games, setGames] = useState([])
+
   return (
     <>
       <header>
