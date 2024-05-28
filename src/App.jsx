@@ -14,8 +14,6 @@ function App() {
           <h1>LUDOLE</h1>
         </Link>
         <nav>
-          {/* <box-icon color="white" type="solid" name="calendar" />
-          <box-icon color="white" name="bar-chart-alt-2" type="solid" /> */}
           <NavLink to="/about">
             <box-icon color="black" name="info-circle" />
           </NavLink>
