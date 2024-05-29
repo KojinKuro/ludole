@@ -33,7 +33,7 @@ function App() {
         <Route path="/about" element={<AboutPage />} />
         <Route path="/howto" element={<InstructionPage />} />
         <Route path="/addgame" element={<AddGame />} />
-        <Route path="/testing" element={<GamePage games={games} answerIndex={0}/> }/>
+        <Route path="/testing" element={<GamePage games={games} answerIndex={3}/> }/>
         <Route path="*" element={<GamePage games={games} />} />
       </Routes>
       <footer>
