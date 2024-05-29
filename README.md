@@ -22,7 +22,7 @@ Daily game inspired by Wordle, videogames, and nostalgia
 
 ## 📝 Overview
 
-Ludole is a daily game inspired by Wordle and classic videogames. Each day, players are presented with a randomly selected game cover that is initially blurred. Players have 8 attempts to guess the game title, with each incorrect guess slightly unblurring the image. This project focuses on building a building out a fullstack application, exposing us to backend technologies.
+Ludole is a daily game inspired by Wordle and classic videogames. Each day, players are presented with a randomly selected game cover that is initially blurred. Players have 8 attempts to guess the game title, with each incorrect guess slightly unblurring the image. This project focuses on building a building out a fullstack application, exposing us to [backend technologies](https://github.com/KojinKuro/ludole-api).
 ## ✨ Features
 
 - Randomly generated game cover each day
@@ -31,7 +31,7 @@ Ludole is a daily game inspired by Wordle and classic videogames. Each day, play
 - Responsive design for various screen sizes
 - End-to-end testing with Cypress
 - Data fetching using the Fetch API
-- Custom-built REST API
+- [Custom-built REST API](https://github.com/KojinKuro/ludole-api)
 - PostgreSQL server for data storage
 ## 🎥 Demo
 
@@ -39,7 +39,7 @@ Insert gif or link to demo
 
 ## ⚙️ Installation
 
-To run Ludole locally, you will need to set up the backend. Instructions for this are available in the backend repository. Alternatively, you can check out our live deployment. Note that the backend server may have a slow startup time if it has been idle.
+To run Ludole locally, you will need to set up the [backend](https://github.com/KojinKuro/ludole-api). Instructions for this are available in the [backend repository](https://github.com/KojinKuro/ludole-api). Alternatively, you can check out our live deployment. Note that the live backend server may have a slow startup time if it has been idle.
 
 ```bash
   git clone git@github.com:KojinKuro/ludole.git
@@ -65,7 +65,7 @@ Ludole was developed in one week at the Turing School of Software & Design. The 
 
 The primary objective was to create a full-stack application utilizing React for the frontend and Express, Knex, and PostgreSQL for the backend. We succeed in achieving these goals, and learned a lot from doing this. Key takeaways included understanding the importance of prioritizing essential features for the MVP and navigating extensive documentation. We found alternative resources like developer gists, YouTube tutorials, and mentor guidance to be particularly helpful.
 
-Deploying the backend on a cloud provider was initially intimidating, but using Render.com simplified the process. The fact that their service was free as well was a nice bonus. This also included learning how to setup a `.env` and keeping our environment variables safe to make sure no one could mess with our database.
+Deploying the backend on a cloud provider was initially intimidating, but using [Render.com](https://render.com/) simplified the process. The fact that their service was free as well was a nice bonus. This also included learning how to setup a `.env` and keeping our environment variables safe to make sure no one could mess with our database.
 
 Most team members focused on backend learning, while some reinforced frontend concepts such as Cypress testing, prop-types checking, and responsive design implementation.
 
