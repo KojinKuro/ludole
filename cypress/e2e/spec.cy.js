@@ -8,7 +8,7 @@ describe("basic function check", () => {
 
 describe("Landing page game.", () => {
   beforeEach(() => {
-    cy.intercept('GET', 'https://ludole-api.onrender.com/api/v1/game',{
+    cy.intercept("GET", "https://ludole-api.onrender.com/api/v1/game",{
       statusCode: 200,
       fixture: 'game.json'
     });
@@ -144,5 +144,18 @@ describe('Incorrect or partially correct guesses.',()=>{
     .click()
     .get("h2")
     .should("contain", "You Lose, Game Over!")
+  })
+});
+
+describe('Network Errors', ()=>{
+  beforeEach(()=>{
+    cy.intercept('GET', 'https://ludole-api.onrender.com/api/v1/game',{
+      statusCode: 500
+    });
+    cy.visit('http://127.0.0.1:5173/testing')
+  });
+  it('As a user if the request to load games fails, I should see an error message as a user.',()=>{
+    cy.get('#root > div')
+    .contains("Error: Oops, something went wrong! Please reload the page.")
   })
 });

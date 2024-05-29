@@ -1,5 +1,4 @@
-{
-  "game": [
+[
     {
       "id": 472,
       "title": "The Elder Scrolls V: Skyrim",
@@ -208,5 +207,4 @@
       "developer": ["Atlus", "P Studio"],
       "publisher": ["Sega"]
     }
-  ] 
-}
+  ]
