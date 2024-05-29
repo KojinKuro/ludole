@@ -32,13 +32,12 @@ describe("Landing page game.", () => {
 });
 
 
-//The below code will be available to implement once we have api calls to intercept, it was tested by editing mock data to only include the first .
 describe('Correct guesses tests',()=>{
   beforeEach(()=>{
     //get intercept goes here
     cy.visit('http://127.0.0.1:5173/testing')
     .get('input')
-    .type("The Elder Scrolls V: Skyrim")
+    .type("Super Mario World")
     .get('button')
     .click();
   });
@@ -69,15 +68,71 @@ describe('Correct guesses tests',()=>{
 
 describe('Incorrect or partially correct guesses.',()=>{
   beforeEach(()=>{
+    //network intercept goes here.
     cy.visit('http://127.0.0.1:5173/testing')
   });
-  it('As a user if I guess very wrong, my guess should show up in red on the attempts table.',()=>{
+  it('As a user if I guess close, my guess should show up in blue on the attempts table.',()=>{
     cy.get('input')
     .type("Super Mario World 2: Yoshi's Island")
     .get('button')
     .click()
     .get('.guess-container > :nth-child(1)')
     .invoke('attr','class')
-    .should('contain', 'red')
+    .should('contain', 'blue');
   });
+  it('If I guess very wrong, my guess should show up in red in the attempts table.',()=>{
+    cy.get('input')
+    .type("Steins;Gate")
+    .get('button')
+    .click()
+    .get('.guess-container > :nth-child(1)')
+    .invoke('attr','class')
+    .should('contain', 'red');
+  });
+  it('If I make multiple wrong guesses, the attempts counter should reflect that.',()=>{
+    cy.get('input')
+    .type("Steins;Gate")
+    .get('button')
+    .click()
+    .type("Steins;Gate")
+    .get('button')
+    .click()
+    .type("Steins;Gate")
+    .get('button')
+    .click()
+    .get("h2")
+    .should("contain", "3/8")
+  });
+  it('If I lose the game by maxing out attempts, I should not be able to guess anymore',()=>{
+    cy.get('input')
+    .type("Steins;Gate")
+    .get('button')
+    .click()
+    .type("Steins;Gate")
+    .get('button')
+    .click()
+    .type("Steins;Gate")
+    .get('button')
+    .click()
+    .type("Steins;Gate")
+    .get('button')
+    .click()
+    .type("Steins;Gate")
+    .get('button')
+    .click()
+    .type("Steins;Gate")
+    .get('button')
+    .click()
+    .type("Steins;Gate")
+    .get('button')
+    .click()
+    .type("Steins;Gate")
+    .get('button')
+    .click()
+    .type("Steins;Gate")
+    .get('button')
+    .click()
+    .get("h2")
+    .should("contain", "You Lose, Game Over!")
+  })
 });
