@@ -7,9 +7,9 @@ import { useEffect, useState } from "react";
 import { getGames } from "./javascript/apiCalls";
 
 function App() {
-  const [games, setGames] = useState([])
-  const [loadSuccess, setLoadSuccess] = useState(false)
-  const [statusMessage, setStatusMessage] = useState('Loading...')
+  const [games, setGames] = useState([]);
+  const [loadSuccess, setLoadSuccess] = useState(false);
+  const [statusMessage, setStatusMessage] = useState('Loading...');
   function loadGames(){
     getGames().then((r)=>{
     if(r.ok){
