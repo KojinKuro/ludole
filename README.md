@@ -35,7 +35,7 @@ Ludole is a daily game inspired by Wordle and classic videogames. Each day, play
 - PostgreSQL server for data storage
 ## 🎥 Demo
 
-Insert gif or link to demo
+[https://ludole.vercel.app/](https://ludole.vercel.app/)
 
 ## ⚙️ Installation
 
