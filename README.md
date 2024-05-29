@@ -18,8 +18,7 @@ Daily game inspired by Wordle, videogames, and nostalgia
 ![Figma](https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white)
 ## 📸 Screenshots
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
-
+![App Screenshot](https://github.com/KojinKuro/ludole/assets/11234292/b39639a0-5457-4c81-a913-ca50da9994f8)
 
 ## 📝 Overview
 
@@ -37,7 +36,6 @@ Ludole is a daily game inspired by Wordle and classic videogames. Each day, play
 ## 🎥 Demo
 
 Insert gif or link to demo
-
 
 ## ⚙️ Installation
 
