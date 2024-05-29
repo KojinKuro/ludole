@@ -12,7 +12,7 @@ function App() {
   const [loadSuccess, setLoadSuccess] = useState(false);
   const [statusMessage, setStatusMessage] = useState('Loading...');
   function loadGames(){
-    getGames().then((r)=>{
+    getGames().then((r) => {
     if(r.ok){
       return r.json();
     } else {
@@ -31,6 +31,11 @@ function App() {
   useEffect(()=>{
     loadGames();
   },[]);
+
+  function addNewGame(newGame) {
+    setGames([...games, newGame])
+  }
+
   return (
     <>
       <header>
@@ -54,7 +59,8 @@ function App() {
         <Route path="/" element={loadSuccess?<GamePage games={games} />:<div>{`${statusMessage}`}</div>} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/howto" element={<InstructionPage />} />
-        <Route path="/addgame" element={<AddGame />} />
+        <Route path="/addgame" element={<AddGame addNewGame={addNewGame}/>} />
+        <Route path="/testing" element={loadSuccess?<GamePage games={games} answerIndex={3}/>:<div>{`${statusMessage}`}</div> }/>
         <Route path="*" element={loadSuccess?<GamePage games={games} />:<div>{`${statusMessage}`}</div>} />
       </Routes>
       <footer>
