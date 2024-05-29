@@ -1,0 +1,41 @@
+.add-game {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    margin: 15px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 80vh;
+    margin: 15px;
+}
+
+input {
+    margin: 5px;
+    width: 40%;
+}
+
+.submit-button {
+    width: 25%;
+    margin-top: 10px;
+}
+
+@media (max-width: 430px) {
+    .add-game {
+        width: 100%;
+    }
+
+    .submit-button, input {
+        width: 50%
+    }
+
+    h1 {
+        font-size: large;
+    }
+
+}

@@ -7,6 +7,8 @@ import InstructionPage from "./pages/InstructionPage";
 import AddGame from "./components/AddGame/AddGame";
 
 function App() {
+  // state for all games will live here. Setter function will need to be passed
+  // to AddGames component 
   return (
     <>
       <header>

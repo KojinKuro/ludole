@@ -1,6 +1,7 @@
 import { useState } from "react";
+import "./AddGame.css"
 
-export default function AddGame() {
+export default function AddGame() { //pass setter function in for allGames as prop
   const [newGame, setNewGame] = useState({
     title: "",
     imagesrc: "",
@@ -32,6 +33,14 @@ export default function AddGame() {
       }));
     }
   };
+
+//   const submitGame = (e) => {
+//     e.preventDefault() 
+//     post request will live here
+//     along with setter function for adding the returned data to 
+//     our all games state. 
+//   }
+
   console.log('game', newGame);
   return (
     <div className="add-game">
@@ -58,26 +67,19 @@ export default function AddGame() {
           onChange={handleChange}
           value={newGame.year}
         />
-        {/* <input 
-            type="text"
-            placeholder="Add a Genre"
-            name="genre"
-            onChange={handleChange}
-            value={newGame.genre}
-            /> */}
         <input
           type="text"
-          placeholder="Add Genre"
+          placeholder="Game Genre"
           onBlur={(e) => handleArrayChange(e, "genre")}
         />
         <input
           type="text"
-          placeholder="Add a Theme"
+          placeholder="Game Theme"
           onBlur={(e) => handleArrayChange(e, "themes")}
         />
         <input
           type="text"
-          placeholder="Add a Console"
+          placeholder="Game Console"
           onBlur={(e) => handleArrayChange(e, "console")}
         />
         <input
@@ -90,7 +92,7 @@ export default function AddGame() {
           placeholder="Publisher"
           onBlur={(e) => handleArrayChange(e, "publisher")}
         />
-        <button>Submit Game</button>
+        {/* <button onClick={submitGame} className="submit-button">Submit Game</button> */}
       </form>
     </div>
   );
