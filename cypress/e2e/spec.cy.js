@@ -1,3 +1,5 @@
+
+
 describe("basic function check", () => {
   it("is server running? are tests working?", () => {
     cy.visit("http://127.0.0.1:5173/");
@@ -15,7 +17,9 @@ describe("Landing page game.", () => {
       .should("contain", "grey");
   });
   it("As a user once I make an acceptable guess this should be reflected on the page.", () => {
-    cy.get("input")
+    cy.get("h2")
+      .should("contain", "0/8")
+      .get("input")
       .type("The Elder Scrolls V: Skyrim")
       .get("button")
       .click()
@@ -60,5 +64,20 @@ describe('Correct guesses tests',()=>{
     .get('.guess-container > :nth-child(2)')
     .invoke('attr','class')
     .should('contain', 'grey');
+  });
+});
+
+describe('Incorrect or partially correct guesses.',()=>{
+  beforeEach(()=>{
+    cy.visit('http://127.0.0.1:5173/testing')
+  });
+  it('As a user if I guess very wrong, my guess should show up in red on the attempts table.',()=>{
+    cy.get('input')
+    .type("Super Mario World 2: Yoshi's Island")
+    .get('button')
+    .click()
+    .get('.guess-container > :nth-child(1)')
+    .invoke('attr','class')
+    .should('contain', 'red')
   });
 });
