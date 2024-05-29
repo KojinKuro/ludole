@@ -1,14 +1,28 @@
 import { Link, NavLink, Route, Routes } from "react-router-dom";
 import "./App.css";
-import { games } from "./mockGames";
 import AboutPage from "./pages/AboutPage";
 import GamePage from "./pages/GamePage";
 import InstructionPage from "./pages/InstructionPage";
 import { useEffect, useState } from "react";
+import { getGames } from "./javascript/apiCalls";
 
 function App() {
   const [games, setGames] = useState([])
-
+  function loadGames(){
+    getGames().then((r)=>{
+    return r.json()
+    })
+    .then((data)=>{
+      console.log(data)
+      setGames(data)
+    })
+    .then(()=>{
+      console.log(games)
+    })
+  };
+  useEffect(()=>{
+    loadGames()
+  },[])
   return (
     <>
       <header>
