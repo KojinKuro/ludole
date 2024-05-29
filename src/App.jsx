@@ -12,11 +12,19 @@ function App() {
   const [statusMessage, setStatusMessage] = useState('Loading...')
   function loadGames(){
     getGames().then((r)=>{
-    return r.json()
+    if(r.ok){
+      return r.json();
+    } else {
+      throw new Error('Oops, something went wrong! Please reload the page.');
+    };
     })
     .then((data)=>{
-      setGames(data)
-      setLoadSuccess(true)
+      setGames(data);
+      setLoadSuccess(true);
+    })
+    .catch((error)=>{
+      console.error(error);
+      setStatusMessage(String(error));
     });
   };
   useEffect(()=>{
@@ -44,7 +52,7 @@ function App() {
         <Route path="/" element={loadSuccess?<GamePage games={games} />:<div>{`${statusMessage}`}</div>} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/howto" element={<InstructionPage />} />
-        <Route path="*" element={<GamePage games={games} />} />
+        <Route path="*" element={loadSuccess?<GamePage games={games} />:<div>{`${statusMessage}`}</div>} />
       </Routes>
       <footer>
         Coded by Brandon Doza, Charles Kwang, Gwyneth Patrick, Lydia S
