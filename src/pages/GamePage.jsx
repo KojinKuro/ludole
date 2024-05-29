@@ -8,13 +8,17 @@ import { findGameObject } from "../javascript/game";
 import { compareGuesses, createGuess } from "../javascript/guess";
 import "./GamePage.css";
 
-export default function GamePage({ games, totalGuesses = 8 }) {
+export default function GamePage({
+  games,
+  totalGuesses = 8,
+  answerIndex = Math.floor(Math.random() * games.length),
+}) {
   const [guessCount, setGuessCount] = useState(0);
   const [guessHistory, setGuessHistory] = useState([]);
 
   const [hasWon, setHasWon] = useState(false);
 
-  const answer = useRef(games[Math.floor(Math.random() * games.length)]);
+  const answer = useRef(games[answerIndex]);
 
   const addGuess = (guess) => {
     setGuessHistory((prevHistory) => [...prevHistory, guess]);
@@ -68,4 +72,5 @@ const gamesPropTypes = PropTypes.arrayOf(
 GamePage.propTypes = {
   games: gamesPropTypes.isRequired,
   totalGuesses: PropTypes.number,
+  answerIndex: PropTypes.number,
 };
