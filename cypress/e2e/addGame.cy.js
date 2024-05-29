@@ -17,7 +17,22 @@ describe('Game post page', () => {
     .type('Me!')
   });
   it('As a user if I submit a game with all the fields filled out my submission should be succesful.', () => {
+    cy.intercept('POST', 'https://ludole-api.onrender.com/api/v1/game',{
+      statusCode: '201',
+      body: {
+        "title": "Game",
+        "imagesrc":
+          "website",
+        "year": 1802,
+        "genre": ["Fun"],
+        "themes": ["Silly"],
+        "console": ["PC"],
+        "developer": ["Me!"],
+        "publisher": ["My best friend!"]
+      }
+    });
     cy.get('[placeholder="Publisher"]')
     .type('My best friend!')
   });
+
 })
