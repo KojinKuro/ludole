@@ -27,12 +27,12 @@ describe("Landing page game.", () => {
   });
 });
 
-/*
+
 //The below code will be available to implement once we have api calls to intercept, it was tested by editing mock data to only include the first .
 describe('Correct guesses tests',()=>{
   beforeEach(()=>{
     //get intercept goes here
-    cy.visit('http://127.0.0.1:5173/')
+    cy.visit('http://127.0.0.1:5173/testing')
     .get('input')
     .type("The Elder Scrolls V: Skyrim")
     .get('button')
@@ -62,5 +62,3 @@ describe('Correct guesses tests',()=>{
     .should('contain', 'grey');
   });
 });
-
-*/
