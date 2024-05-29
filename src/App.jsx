@@ -1,14 +1,36 @@
 import { Link, NavLink, Route, Routes } from "react-router-dom";
 import "./App.css";
-import { games } from "./mockGames";
 import AboutPage from "./pages/AboutPage";
 import GamePage from "./pages/GamePage";
 import InstructionPage from "./pages/InstructionPage";
 import AddGame from "./components/AddGame/AddGame";
+import { useEffect, useState } from "react";
+import { getGames } from "./javascript/apiCalls";
 
 function App() {
-  // state for all games will live here. Setter function will need to be passed
-  // to AddGames component 
+  const [games, setGames] = useState([]);
+  const [loadSuccess, setLoadSuccess] = useState(false);
+  const [statusMessage, setStatusMessage] = useState('Loading...');
+  function loadGames(){
+    getGames().then((r)=>{
+    if(r.ok){
+      return r.json();
+    } else {
+      throw new Error('Oops, something went wrong! Please reload the page.');
+    };
+    })
+    .then((data)=>{
+      setGames(data);
+      setLoadSuccess(true);
+    })
+    .catch((error)=>{
+      console.error(error);
+      setStatusMessage(String(error));
+    });
+  };
+  useEffect(()=>{
+    loadGames();
+  },[]);
   return (
     <>
       <header>
@@ -29,12 +51,12 @@ function App() {
         </nav>
       </header>
       <Routes>
-        <Route path="/" element={<GamePage games={games} />} />
+        <Route path="/" element={loadSuccess?<GamePage games={games} />:<div>{`${statusMessage}`}</div>} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/howto" element={<InstructionPage />} />
         <Route path="/addgame" element={<AddGame />} />
-        <Route path="/testing" element={<GamePage games={games} answerIndex={3}/> }/>
-        <Route path="*" element={<GamePage games={games} />} />
+        <Route path="/testing" element={loadSuccess?<GamePage games={games} answerIndex={3}/>:<div>{`${statusMessage}`}</div> }/>
+        <Route path="*" element={loadSuccess?<GamePage games={games} />:<div>{`${statusMessage}`}</div>} />
       </Routes>
       <footer>
         Coded by Brandon Doza, Charles Kwang, Gwyneth Patrick, Lydia S
