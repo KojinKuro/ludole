@@ -20,9 +20,9 @@ describe('Game post page', () => {
     cy.intercept('POST', 'https://ludole-api.onrender.com/api/v1/game',{
       statusCode: '201',
       body: {
-        "title": "Game",
-        "imagesrc":
-          "website",
+        "id" : 89009,
+        "title" : "Game",
+        "imagesrc": "website",
         "year": 1802,
         "genre": ["Fun"],
         "themes": ["Silly"],
@@ -34,5 +34,4 @@ describe('Game post page', () => {
     cy.get('[placeholder="Publisher"]')
     .type('My best friend!')
   });
-
-})
+});
