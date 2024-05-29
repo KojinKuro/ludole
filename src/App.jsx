@@ -4,6 +4,7 @@ import { games } from "./mockGames";
 import AboutPage from "./pages/AboutPage";
 import GamePage from "./pages/GamePage";
 import InstructionPage from "./pages/InstructionPage";
+import AddGame from "./components/AddGame/AddGame";
 
 function App() {
   return (
@@ -22,12 +23,16 @@ function App() {
           <NavLink to="/howto">
             <box-icon color="black" type="solid" name="help-circle" />
           </NavLink>
+          <NavLink to="/addgame">
+            <box-icon color="black" type='solid' name='add-to-queue'></box-icon>
+          </NavLink>
         </nav>
       </header>
       <Routes>
         <Route path="/" element={<GamePage games={games} />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/howto" element={<InstructionPage />} />
+        <Route path="/addgame" element={<AddGame />} />
         <Route path="*" element={<GamePage games={games} />} />
       </Routes>
       <footer>
