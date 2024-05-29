@@ -8,16 +8,14 @@ import { getGames } from "./javascript/apiCalls";
 
 function App() {
   const [games, setGames] = useState([])
+  const [loadSuccess, setLoadSuccess] = useState(false)
   function loadGames(){
     getGames().then((r)=>{
     return r.json()
     })
     .then((data)=>{
-      console.log(data)
       setGames(data)
-    })
-    .then(()=>{
-      console.log(games)
+      setLoadSuccess(true)
     })
   };
   useEffect(()=>{
@@ -42,7 +40,7 @@ function App() {
         </nav>
       </header>
       <Routes>
-        <Route path="/" element={<GamePage games={games} />} />
+        <Route path="/" element={loadSuccess?<GamePage games={games} />:<div>Loading</div>} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/howto" element={<InstructionPage />} />
         <Route path="*" element={<GamePage games={games} />} />
