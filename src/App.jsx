@@ -3,6 +3,7 @@ import "./App.css";
 import AboutPage from "./pages/AboutPage";
 import GamePage from "./pages/GamePage";
 import InstructionPage from "./pages/InstructionPage";
+import AddGame from "./components/AddGame/AddGame";
 import { useEffect, useState } from "react";
 import { getGames } from "./javascript/apiCalls";
 
@@ -38,13 +39,14 @@ function App() {
           <h1>LUDOLE</h1>
         </Link>
         <nav>
-          {/* <box-icon color="white" type="solid" name="calendar" />
-          <box-icon color="white" name="bar-chart-alt-2" type="solid" /> */}
           <NavLink to="/about">
             <box-icon color="black" name="info-circle" />
           </NavLink>
           <NavLink to="/howto">
             <box-icon color="black" type="solid" name="help-circle" />
+          </NavLink>
+          <NavLink to="/addgame">
+            <box-icon color="black" type='solid' name='add-to-queue'></box-icon>
           </NavLink>
         </nav>
       </header>
@@ -52,6 +54,7 @@ function App() {
         <Route path="/" element={loadSuccess?<GamePage games={games} />:<div>{`${statusMessage}`}</div>} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/howto" element={<InstructionPage />} />
+        <Route path="/addgame" element={<AddGame />} />
         <Route path="*" element={loadSuccess?<GamePage games={games} />:<div>{`${statusMessage}`}</div>} />
       </Routes>
       <footer>
