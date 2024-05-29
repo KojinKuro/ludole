@@ -8,6 +8,10 @@ describe("basic function check", () => {
 
 describe("Landing page game.", () => {
   beforeEach(() => {
+    cy.intercept('GET', 'https://ludole-api.onrender.com/api/v1/game',{
+      statusCode: 200,
+      fixture: 'game.json'
+    });
     cy.visit("http://127.0.0.1:5173/");
   });
   it("As a user if I make a guess that is not currently in the possible titles, my guess will not be processed.", () => {
@@ -34,7 +38,10 @@ describe("Landing page game.", () => {
 
 describe('Correct guesses tests',()=>{
   beforeEach(()=>{
-    //get intercept goes here
+    cy.intercept('GET', 'https://ludole-api.onrender.com/api/v1/game',{
+      statusCode: 200,
+      fixture: 'game.json'
+    });
     cy.visit('http://127.0.0.1:5173/testing')
     .get('input')
     .type("Super Mario World")
@@ -68,7 +75,10 @@ describe('Correct guesses tests',()=>{
 
 describe('Incorrect or partially correct guesses.',()=>{
   beforeEach(()=>{
-    //network intercept goes here.
+    cy.intercept('GET', 'https://ludole-api.onrender.com/api/v1/game',{
+      statusCode: 200,
+      fixture: 'game.json'
+    });
     cy.visit('http://127.0.0.1:5173/testing')
   });
   it('As a user if I guess close, my guess should show up in blue on the attempts table.',()=>{
