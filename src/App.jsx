@@ -64,7 +64,7 @@ function App() {
         <Route path="*" element={loadSuccess?<GamePage games={games} />:<div>{`${statusMessage}`}</div>} />
       </Routes>
       <footer>
-        Coded by Brandon Doza, Charles Kwang, Gwyneth Patrick, Lydia S
+        Coded by Brandon Doza, Charles Kwang, Gwyneth Patrick, Lydia Sims.
       </footer>
     </>
   );
