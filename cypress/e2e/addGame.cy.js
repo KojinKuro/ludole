@@ -18,7 +18,7 @@ describe('Game post page', () => {
   });
   it('As a user if I submit a game with all the fields filled out my submission should be succesful.', () => {
     cy.intercept('POST', 'https://ludole-api.onrender.com/api/v1/game',{
-      statusCode: '201',
+      statusCode: 201,
       body: {
         "id" : 89009,
         "title" : "Game",
@@ -33,5 +33,18 @@ describe('Game post page', () => {
     });
     cy.get('[placeholder="Publisher"]')
     .type('My best friend!')
+    .get('button')
+    .click()
+    .get('#success')
+    .contains('Game Successfully Submitted')
+  });
+  it('If I get an error when posting I should see that reflected on the page.',()=>{
+    cy.intercept('POST', 'https://ludole-api.onrender.com/api/v1/game',{
+      statusCode: 422
+    });
+    cy.get('button')
+    .click()
+    .get('#success')
+    .contains('There was a problem submitting your game')
   });
 });
