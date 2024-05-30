@@ -19,6 +19,9 @@ describe("Direct Url Navigation.", () => {
       ".guess-container > :nth-child(1)"
     );
   });
+  it("If I go to the path /addgame, it will take me to the submissions page.", () => {
+    cy.visit("http://127.0.0.1:5173/addgame").get('[placeholder="Game Title"]');
+  });
 });
 
 describe("Click Navigation.", () => {
@@ -36,5 +39,10 @@ describe("Click Navigation.", () => {
       .get('[href="/"] > box-icon')
       .click()
       .get(".guess-container > :nth-child(1)");
+  });
+  it('As a user, if I click the rightmost icon it should take me to the submissions page',()=>{
+    cy.get('[href="/addgame"] > box-icon')
+    .click()
+    .get('[placeholder="Game Title"]');
   });
 });
