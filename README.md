@@ -54,7 +54,7 @@ The server should be running on: `localhost:5173`
 To run our Cypress tests, run the following command
 
 ```bash
-  npm run cypress
+  npm run e2e
 ```
 
 From there the Cypress test runner will run. For more information on Cypress, check out the [Cypress documentation](https://www.cypress.io/)
