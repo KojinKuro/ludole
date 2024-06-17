@@ -1,4 +1,4 @@
-import "./InstructionPage.css"
+import "./InstructionPage.css";
 
 export default function InstructionPage() {
   return (
