@@ -1,13 +1,9 @@
 #root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
 
   min-height: 100vh;
-
-  --main-color: #9359de;
-  --font-color: white;
 }
 
 main {
@@ -17,21 +13,5 @@ main {
 @media (max-width: 430px) {
   footer {
     font-size: 0.55em;
-  }
-
-  .logo {
-    left: 0;
-    right: 0;
-    transform: translateY(-50%);
-    text-align: center;
-  }
-
-  nav {
-    right: 10px;
-    transform: translateY(-50%);
-  }
-
-  nav a {
-    margin-left: 5px;
   }
 }
