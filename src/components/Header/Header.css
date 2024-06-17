@@ -1,0 +1,38 @@
+header {
+  position: relative;
+  box-sizing: border-box;
+  background-color: var(--main-color);
+  color: var(--font-color);
+  text-transform: capitalize;
+  width: 100%;
+  height: 50px;
+}
+
+.logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+}
+
+h1 {
+  margin: 0;
+}
+
+nav {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+}
+
+nav a {
+  margin-left: 10px;
+  color: black;
+}

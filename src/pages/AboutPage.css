@@ -1,17 +1,19 @@
 .about {
-    width: 50%;
-    margin-top: 25px;
-    }
+  width: 50%;
+  margin-top: 25px;
+}
 
-    .about box-icon {
-        position: absolute; 
-        bottom: -80px; 
-        left: 85px;
-        z-index: -1; 
-      }
+.about box-icon {
+  position: fixed;
+  bottom: 25vh;
+  left: 85px;
+  z-index: -1;
+}
 
 @media (max-width: 430px) {
-    h1, h2, h3 {
-        text-align: center;
-    }
+  h1,
+  h2,
+  h3 {
+    text-align: center;
+  }
 }

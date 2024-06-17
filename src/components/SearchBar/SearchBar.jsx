@@ -1,3 +1,4 @@
+import { Button, Input } from "@chakra-ui/react";
 import { useEffect, useRef, useState } from "react";
 import "./SearchBar.css";
 import SearchResult from "./SearchResult";
@@ -74,11 +75,10 @@ export default function SearchBar({ games, onSearch = () => {} }) {
     <div className="search-bar-root">
       <div className="search-bar-container">
         {/* <label htmlFor="search-bar">Game Input</label> */}
-        <input
+        <Input
           ref={inputRef}
           onKeyDown={handleKey}
           onChange={handleInput}
-          type="text"
           placeholder="place your guess here ..."
           name="search-bar"
           value={searchInput}
@@ -87,7 +87,7 @@ export default function SearchBar({ games, onSearch = () => {} }) {
           <div className="search-results-container">{searchResultsJSX}</div>
         )}
       </div>
-      <button onClick={() => submitSearch(searchInput)}>Submit</button>
+      <Button onClick={() => submitSearch(searchInput)}>Submit</Button>
     </div>
   );
 }

@@ -1,3 +1,4 @@
+import { ChakraProvider } from "@chakra-ui/react";
 import "boxicons";
 import React from "react";
 import ReactDOM from "react-dom/client";
@@ -7,8 +8,10 @@ import "./main.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <ChakraProvider>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </ChakraProvider>
   </React.StrictMode>
 );
