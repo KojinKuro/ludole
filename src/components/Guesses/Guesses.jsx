@@ -1,5 +1,6 @@
-import "./Guesses.css";
+import { Container, SimpleGrid } from "@chakra-ui/react";
 import PropTypes from "prop-types";
+import "./Guesses.css";
 
 //basing this off data from guessArray coming in to be ['guess string', '25' - 25 being the percentage correct] - Hopefully that works
 
@@ -27,24 +28,31 @@ export default function Guesses({ totalGuesses = 8, guessArray = [] }) {
   const boxElements = boxes.map((box, index) => {
     const [guess, numberStr] = box;
     const number = parseInt(numberStr);
+
     return (
-      <div key={index} className={`guess ${getColorClass(number)}`}>
+      <Container
+        height={7}
+        width="100%"
+        border="1px solid black"
+        key={index}
+        noOfLines={1}
+        className={`guess ${getColorClass(number)}`}
+      >
         {guess}
-      </div>
+      </Container>
     );
   });
 
-  return <div className="guess-container">{boxElements}</div>;
+  return (
+    <SimpleGrid width="100%" columns={{ base: 1, md: 2 }} spacing={2}>
+      {boxElements}
+    </SimpleGrid>
+  );
 }
 
 Guesses.propTypes = {
   totalGuesses: PropTypes.number.isRequired,
   guessArray: PropTypes.arrayOf(
-    PropTypes.arrayOf(
-      PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number
-      ])
-    )
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number]))
   ).isRequired,
 };

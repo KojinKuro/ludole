@@ -1,6 +1,7 @@
-import { formatDate, toDate } from "date-fns";
+import { Flex } from "@chakra-ui/react";
+import { formatDate } from "date-fns";
 import PropTypes from "prop-types";
-import { useEffect, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 import { useParams } from "react-router";
 import GameStatus from "../../components/GameStatus/GameStatus";
 import Guesses from "../../components/Guesses/Guesses";
@@ -11,11 +12,45 @@ import { findGameObject } from "../../javascript/game";
 import { compareGuesses, createGuess } from "../../javascript/guess";
 import "./GamePage.css";
 
+function reducer(state, action) {
+  switch (action.type) {
+    case "CHECK_GUESS":
+      if (state.hasWon || state.guessCount == state.totalGuesses) break;
+      const guess = findGameObject(action.guess, state.games);
+      if (!guess) break;
+
+      const evaluation = compareGuesses(guess, state.challenge);
+      return {
+        ...state,
+        hasWon: Boolean(evaluation === 100),
+        guessCount: state.guessCount + 1,
+        guessHistory: [...state.guessHistory, createGuess(action.guess)],
+      };
+    case "SET_CHALLENGE":
+      return {
+        ...state,
+        challenge: action.challenge,
+      };
+    case "UPDATE_PROPS":
+      return {
+        ...state,
+        games: action.games,
+        totalGuesses: action.totalGuesses,
+      };
+  }
+
+  return state;
+}
+
 export default function GamePage({ games, totalGuesses = 8 }) {
-  const [guessCount, setGuessCount] = useState(0);
-  const [guessHistory, setGuessHistory] = useState([]);
-  const [hasWon, setHasWon] = useState(false);
-  const [challenge, setChallenge] = useState(null);
+  const [state, dispatch] = useReducer(reducer, {
+    totalGuesses: totalGuesses,
+    games: games,
+    guessCount: 0,
+    guessHistory: [],
+    hasWon: false,
+    challenge: null,
+  });
 
   const { date } = useParams();
   let formattedDate;
@@ -30,40 +65,42 @@ export default function GamePage({ games, totalGuesses = 8 }) {
   }
 
   useEffect(() => {
-    getChallenge(formatDate(formattedDate, "yyyy-MM-dd")).then(setChallenge);
+    dispatch({
+      type: "UPDATE_PROPS",
+      games: games,
+      totalGuesses: totalGuesses,
+    });
+  }, [games, totalGuesses]);
+
+  useEffect(() => {
+    getChallenge(formatDate(formattedDate, "yyyy-MM-dd")).then((challenge) => {
+      dispatch({ type: "SET_CHALLENGE", challenge: challenge });
+    });
   }, [date]);
 
-  const addGuess = (guess) => {
-    setGuessHistory((prevHistory) => [...prevHistory, guess]);
-  };
-
-  const checkGuess = (guessInput) => {
-    if (hasWon || guessCount == totalGuesses) return;
-    const guess = findGameObject(guessInput, games);
-    if (!guess) return;
-
-    const evaluation = compareGuesses(guess, challenge);
-    if (evaluation === 100) setHasWon(true);
-    addGuess(createGuess(guessInput, evaluation));
-    setGuessCount((prevCount) => prevCount + 1);
+  const checkGuess = (guess) => {
+    dispatch({ type: "CHECK_GUESS", guess: guess });
   };
 
   return (
-    <main id="game">
+    <Flex as="main" direction="column" id="game">
       <ImageBlur
         size="500px"
-        src={challenge?.imagesrc}
-        alt={challenge?.title}
-        blur={hasWon ? 0 : 1 - guessCount / totalGuesses}
+        src={state.challenge?.imagesrc}
+        alt={state.challenge?.title}
+        blur={state.hasWon ? 0 : 1 - state.guessCount / state.totalGuesses}
       />
       <GameStatus
-        numGuesses={guessCount}
-        totalGuesses={totalGuesses}
-        hasWon={hasWon}
+        numGuesses={state.guessCount}
+        totalGuesses={state.totalGuesses}
+        hasWon={state.hasWon}
       />
-      <SearchBar games={games} onSearch={checkGuess} />
-      <Guesses totalGuesses={totalGuesses} guessArray={guessHistory} />
-    </main>
+      <SearchBar games={state.games} onSearch={checkGuess} />
+      <Guesses
+        totalGuesses={state.totalGuesses}
+        guessArray={state.guessHistory}
+      />
+    </Flex>
   );
 }
 

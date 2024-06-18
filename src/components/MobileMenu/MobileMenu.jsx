@@ -1,5 +1,6 @@
 import {
   Button,
+  Link as ChakraLink,
   Drawer,
   DrawerBody,
   DrawerCloseButton,
@@ -7,11 +8,12 @@ import {
   DrawerFooter,
   DrawerHeader,
   DrawerOverlay,
+  Flex,
   IconButton,
-  Input,
   useDisclosure,
 } from "@chakra-ui/react";
 import { useRef } from "react";
+import { Link as ReactRouterLink } from "react-router-dom";
 
 export default function MobileMenu() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -39,7 +41,17 @@ export default function MobileMenu() {
           <DrawerHeader>Create your account</DrawerHeader>
 
           <DrawerBody>
-            <Input placeholder="Type here..." />
+            <Flex direction="column">
+              <ChakraLink as={ReactRouterLink} to="/" onClick={onClose}>
+                Home
+              </ChakraLink>
+              <ChakraLink as={ReactRouterLink} to="/about" onClick={onClose}>
+                About
+              </ChakraLink>
+              <ChakraLink as={ReactRouterLink} to="/addgame" onClick={onClose}>
+                Add Game
+              </ChakraLink>
+            </Flex>
           </DrawerBody>
 
           <DrawerFooter>

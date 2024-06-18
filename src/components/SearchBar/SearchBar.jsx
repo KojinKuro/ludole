@@ -1,5 +1,5 @@
-import { Button, Input } from "@chakra-ui/react";
-import { useEffect, useRef, useState } from "react";
+import { Box, Button, Flex, FormControl, Input } from "@chakra-ui/react";
+import { useRef, useState } from "react";
 import "./SearchBar.css";
 import SearchResult from "./SearchResult";
 
@@ -39,11 +39,9 @@ export default function SearchBar({ games, onSearch = () => {} }) {
   const handleKey = (e) => {
     switch (e.key) {
       case "Enter":
-        if (resultIndex !== null) {
-          submitSearch(searchResults[resultIndex].title);
-        } else {
-          submitSearch(searchInput);
-        }
+        submitSearch(
+          resultIndex !== null ? searchResults[resultIndex].title : searchInput
+        );
         break;
       case "Escape":
         setSearchInput("");
@@ -72,22 +70,29 @@ export default function SearchBar({ games, onSearch = () => {} }) {
   };
 
   return (
-    <div className="search-bar-root">
-      <div className="search-bar-container">
-        {/* <label htmlFor="search-bar">Game Input</label> */}
-        <Input
-          ref={inputRef}
-          onKeyDown={handleKey}
-          onChange={handleInput}
-          placeholder="place your guess here ..."
-          name="search-bar"
-          value={searchInput}
-        />
+    <Flex width="100%">
+      <Flex className="search-bar-container" width="100%">
+        <FormControl>
+          <Input
+            flex="1"
+            ref={inputRef}
+            onKeyDown={handleKey}
+            onChange={handleInput}
+            placeholder="place your guess here ..."
+            name="search-bar"
+            value={searchInput}
+          />
+        </FormControl>
         {searchInput !== "" && (
-          <div className="search-results-container">{searchResultsJSX}</div>
+          <Box className="search-results-container">{searchResultsJSX}</Box>
         )}
-      </div>
-      <Button onClick={() => submitSearch(searchInput)}>Submit</Button>
-    </div>
+      </Flex>
+      <Button
+        isLoading={!games.length}
+        onClick={() => submitSearch(searchInput)}
+      >
+        Submit
+      </Button>
+    </Flex>
   );
 }

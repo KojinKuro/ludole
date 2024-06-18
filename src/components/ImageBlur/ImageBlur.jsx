@@ -1,4 +1,4 @@
-import { Box, Container, Img, Skeleton } from "@chakra-ui/react";
+import { Box, Container, Image, Skeleton } from "@chakra-ui/react";
 import PropTypes from "prop-types";
 import "./ImageBlur.css";
 
@@ -12,17 +12,22 @@ export default function ImageBlur({
   const blurAmount = (parseInt(size.split("px")) * blur) / BLUR_FACTOR;
 
   return (
-    <Skeleton width={size} height={size} isLoaded={src !== undefined}>
-      <Container className="image-container" p={0} width={size} height={size}>
-        <Img
+    <Container
+      className="image-container"
+      p={0}
+      width={{ base: "100%", md: size }}
+      height={{ base: "70vh", md: size }}
+    >
+      <Skeleton width="100%" height="100%" isLoaded={src !== undefined}>
+        <Image
           src={src}
           alt={alt}
-          width={size}
-          height={size}
+          width={{ base: "100%", md: size }}
+          height={{ base: "100%", md: size }}
           style={{ filter: `blur(${blurAmount}px)` }}
         />
-      </Container>
-    </Skeleton>
+      </Skeleton>
+    </Container>
   );
 }
 

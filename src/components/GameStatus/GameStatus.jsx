@@ -2,7 +2,7 @@
 // ex: 3, 9, true
 import PropTypes from "prop-types";
 
-import { Heading } from "@chakra-ui/react";
+import { Container, Heading } from "@chakra-ui/react";
 import "./GameStatus.css";
 
 export default function GameStatus({ numGuesses, totalGuesses, hasWon }) {
@@ -17,7 +17,7 @@ export default function GameStatus({ numGuesses, totalGuesses, hasWon }) {
   }
 
   return (
-    <Heading as="h2" size="md" className="game-status">
+    <Heading textAlign="center" as="h2" size="md" className="game-status">
       {displayText}
     </Heading>
   );

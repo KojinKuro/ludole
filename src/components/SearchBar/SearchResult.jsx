@@ -1,12 +1,13 @@
+import { Container } from "@chakra-ui/react";
 import "./SearchResult.css";
 
 export default function SearchResult({ game, onClick, selected }) {
   return (
-    <div
+    <Container
       onClick={() => onClick()}
       className={"search-result" + (selected ? " selected" : "")}
     >
       {game.title}
-    </div>
+    </Container>
   );
 }

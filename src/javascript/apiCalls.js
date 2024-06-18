@@ -26,6 +26,14 @@ function postGame(newGame) {
     method: "POST",
     body: JSON.stringify(newGame),
     headers: { "Content-Type": "application/json" },
+  }).then((res) => {
+    if (res.ok) {
+      document.getElementById("success").innerText =
+        "Game Successfully Submitted";
+      return res.json();
+    } else {
+      throw new Error("Oops, something went wrong!");
+    }
   });
 }
 
