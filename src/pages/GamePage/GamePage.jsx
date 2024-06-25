@@ -23,7 +23,6 @@ function reducer(state, action) {
       return {
         ...state,
         hasWon: Boolean(evaluation === 100),
-        guessCount: state.guessCount + 1,
         guessHistory: [
           ...state.guessHistory,
           createGuess(action.guess, evaluation),
@@ -33,6 +32,9 @@ function reducer(state, action) {
       return {
         ...state,
         challenge: action.challenge,
+        // used to reset the game
+        guessHistory: [],
+        hasWon: false,
       };
     case "UPDATE_PROPS":
       return {
@@ -49,7 +51,6 @@ export default function GamePage({ games, totalGuesses = 8 }) {
   const [state, dispatch] = useReducer(reducer, {
     totalGuesses: totalGuesses,
     games: games,
-    guessCount: 0,
     guessHistory: [],
     hasWon: false,
     challenge: null,
@@ -91,10 +92,12 @@ export default function GamePage({ games, totalGuesses = 8 }) {
         size="500px"
         src={state.challenge?.imagesrc}
         alt={state.challenge?.title}
-        blur={state.hasWon ? 0 : 1 - state.guessCount / state.totalGuesses}
+        blur={
+          state.hasWon ? 0 : 1 - state.guessHistory.length / state.totalGuesses
+        }
       />
       <GameStatus
-        numGuesses={state.guessCount}
+        numGuesses={state.guessHistory.length}
         totalGuesses={state.totalGuesses}
         hasWon={state.hasWon}
       />

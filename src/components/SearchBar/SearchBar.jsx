@@ -1,4 +1,11 @@
-import { Box, Button, Flex, FormControl, Input } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Container,
+  Flex,
+  FormControl,
+  Input,
+} from "@chakra-ui/react";
 import { useRef, useState } from "react";
 import "./SearchBar.css";
 import SearchResult from "./SearchResult";
@@ -70,29 +77,31 @@ export default function SearchBar({ games, onSearch = () => {} }) {
   };
 
   return (
-    <Flex width="100%">
-      <Flex className="search-bar-container" width="100%">
-        <FormControl>
-          <Input
-            flex="1"
-            ref={inputRef}
-            onKeyDown={handleKey}
-            onChange={handleInput}
-            placeholder="place your guess here ..."
-            name="search-bar"
-            value={searchInput}
-          />
-        </FormControl>
-        {searchInput !== "" && (
-          <Box className="search-results-container">{searchResultsJSX}</Box>
-        )}
+    <Container>
+      <Flex>
+        <Flex className="search-bar-container" width="100%">
+          <FormControl>
+            <Input
+              flex="1"
+              ref={inputRef}
+              onKeyDown={handleKey}
+              onChange={handleInput}
+              placeholder="place your guess here ..."
+              name="search-bar"
+              value={searchInput}
+            />
+          </FormControl>
+          {searchInput !== "" && (
+            <Box className="search-results-container">{searchResultsJSX}</Box>
+          )}
+        </Flex>
+        <Button
+          isLoading={!games.length}
+          onClick={() => submitSearch(searchInput)}
+        >
+          Submit
+        </Button>
       </Flex>
-      <Button
-        isLoading={!games.length}
-        onClick={() => submitSearch(searchInput)}
-      >
-        Submit
-      </Button>
-    </Flex>
+    </Container>
   );
 }

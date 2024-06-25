@@ -35,7 +35,6 @@ export default function Guesses({ totalGuesses = 8, guessArray = [] }) {
     return (
       <Container
         height={7}
-        width="100%"
         border="1px solid black"
         key={index}
         noOfLines={1}

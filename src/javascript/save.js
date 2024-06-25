@@ -17,9 +17,15 @@ function resetGame() {
 
 {
   "2024-06-17": {
-    guessArray
-  }
-
+    guessCount: 0,
+    guessHistory: [],
+    hasWon: false,
+  },
+  "2024-06-18": {
+    guessCount: 0,
+    guessHistory: [],
+    hasWon: false,
+  },
 }
 
 */
