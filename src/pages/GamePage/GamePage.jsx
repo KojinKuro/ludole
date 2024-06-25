@@ -1,8 +1,9 @@
-import { Flex } from "@chakra-ui/react";
+import { Flex, Heading, Skeleton } from "@chakra-ui/react";
 import { formatDate } from "date-fns";
 import PropTypes from "prop-types";
-import { useEffect, useReducer, useState } from "react";
+import { useEffect, useReducer } from "react";
 import { useParams } from "react-router";
+
 import GameStatus from "../../components/GameStatus/GameStatus";
 import Guesses from "../../components/Guesses/Guesses";
 import ImageBlur from "../../components/ImageBlur/ImageBlur";
@@ -11,6 +12,7 @@ import { getChallenge } from "../../javascript/apiCalls";
 import { getLocalDate } from "../../javascript/date";
 import { findGameObject } from "../../javascript/game";
 import { compareGuesses, createGuess } from "../../javascript/guess";
+import { loadGameDate, saveGameDate } from "../../javascript/save";
 import "./GamePage.css";
 
 function reducer(state, action) {
@@ -21,21 +23,29 @@ function reducer(state, action) {
       if (!guess) break;
 
       const evaluation = compareGuesses(guess, state.challenge);
-      return {
-        ...state,
+      const currentGameState = {
+        totalGuesses: state.totalGuesses,
         hasWon: Boolean(evaluation === 100),
         guessHistory: [
           ...state.guessHistory,
           createGuess(action.guess, evaluation),
         ],
       };
-    case "SET_CHALLENGE":
+
+      saveGameDate(state.date, currentGameState);
+      return {
+        ...state,
+        ...currentGameState,
+      };
+    case "URL_UPDATE":
+      const saveData = loadGameDate(action.date);
       return {
         ...state,
         challenge: action.challenge,
-        // used to reset the game
-        guessHistory: [],
-        hasWon: false,
+        date: action.date,
+        totalGuesses: saveData ? saveData.totalGuesses : 8,
+        guessHistory: saveData ? saveData.guessHistory : [],
+        hasWon: saveData ? saveData.hasWon : false,
       };
     case "UPDATE_PROPS":
       return {
@@ -49,22 +59,26 @@ function reducer(state, action) {
 }
 
 export default function GamePage({ games, totalGuesses = 8 }) {
+  const { date } = useParams();
   const [state, dispatch] = useReducer(reducer, {
     totalGuesses: totalGuesses,
     games: games,
     guessHistory: [],
     hasWon: false,
     challenge: null,
+    date: null,
   });
-
-  const { date } = useParams();
 
   useEffect(() => {
     const localDate = !date ? new Date() : getLocalDate(date);
     const formattedDate = formatDate(localDate, "yyyy-MM-dd");
 
     getChallenge(formattedDate).then((challenge) => {
-      dispatch({ type: "SET_CHALLENGE", challenge: challenge });
+      dispatch({
+        type: "URL_UPDATE",
+        challenge: challenge,
+        date: formattedDate,
+      });
     });
   }, [date]);
 
@@ -82,6 +96,7 @@ export default function GamePage({ games, totalGuesses = 8 }) {
 
   return (
     <Flex as="main" direction="column" id="game">
+      <Heading textAlign="center">{state.date}</Heading>
       <ImageBlur
         size="500px"
         src={state.challenge?.imagesrc}

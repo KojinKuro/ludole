@@ -53,8 +53,8 @@ export default function Guesses({ totalGuesses = 8, guessArray = [] }) {
 }
 
 Guesses.propTypes = {
-  totalGuesses: PropTypes.number.isRequired,
+  totalGuesses: PropTypes.number,
   guessArray: PropTypes.arrayOf(
     PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number]))
-  ).isRequired,
+  ),
 };

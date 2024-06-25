@@ -1,35 +1,61 @@
-import { format } from "date-fns";
+import { format, formatDate } from "date-fns";
+import { getLocalDate } from "./date";
 
 const SAVE_FILE_NAME = "save_file";
 
-function loadGame() {
-  const saveFileText = localStorage.loadGame(SAVE_FILE_NAME);
+// LOADING GAME FUNCTIONS
+export function loadGame() {
+  const saveFileText = localStorage.getItem(SAVE_FILE_NAME);
   return JSON.parse(saveFileText);
 }
 
-function saveGame(saveInformation) {
+export function loadGameDate(date) {
+  const localDate = getLocalDate(date);
+  const formattedDate = formatDate(localDate, "yyyy-MM-dd");
+
+  const loadedGameInfo = loadGame();
+  return loadedGameInfo ? loadedGameInfo[formattedDate] : null;
+}
+
+// SAVE GAME FUNCTIONS
+export function saveGame(saveInformation) {
   localStorage.setItem(SAVE_FILE_NAME, JSON.stringify(saveInformation));
 }
 
-function saveGameDate(date, saveInformation) {
-  const { guessHistory, hasWon } = saveInformation;
-  saveGame({ ...loadGame() });
+export function saveGameDate(date, saveInformation) {
+  const { guessHistory, hasWon, totalGuesses } = saveInformation;
+  const localDate = getLocalDate(date);
+  const formattedDate = formatDate(localDate, "yyyy-MM-dd");
+
+  saveGame({
+    ...loadGame(),
+    [formattedDate]: {
+      guessHistory,
+      hasWon,
+      totalGuesses,
+    },
+  });
 }
 
-function resetGame() {
+// RESET GAME FUNCTIONS
+export function resetGame() {
   localStorage.clear();
 }
 
 /*
 
+SAVE FILE FORMAT
+
 {
   "2024-06-17": {
     guessHistory: [],
     hasWon: false,
+    totalGuesses: 8,
   },
   "2024-06-18": {
     guessHistory: [],
     hasWon: false,
+    totalGuesses: 8,
   },
 }
 
