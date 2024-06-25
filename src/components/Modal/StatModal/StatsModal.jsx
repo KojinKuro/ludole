@@ -23,10 +23,12 @@ import {
 import { Bar } from "react-chartjs-2";
 Chart.register(CategoryScale, BarController, BarElement, LinearScale);
 
-import { loadGame } from "../../../javascript/save";
+import { useNavigate } from "react-router";
+import { loadGame, resetGame } from "../../../javascript/save";
 
 export default function StatsModal() {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const navigate = useNavigate();
 
   const saveData = loadGame();
   const gameStats = Object.keys(saveData || {}).reduce(
@@ -77,6 +79,12 @@ export default function StatsModal() {
     ],
   };
 
+  const resetStats = () => {
+    resetGame();
+    onClose();
+    navigate(0);
+  };
+
   return (
     <>
       <IconButton
@@ -105,6 +113,9 @@ export default function StatsModal() {
             </Flex>
           </ModalBody>
           <ModalFooter>
+            <Button colorScheme="red" mr={3} onClick={resetStats}>
+              Reset Stats
+            </Button>
             <Button colorScheme="blue" mr={3} onClick={onClose}>
               Close
             </Button>

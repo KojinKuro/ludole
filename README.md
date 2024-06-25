@@ -1,4 +1,3 @@
-
 # 👾 Ludole
 
 Daily game inspired by Wordle, videogames, and nostalgia
@@ -16,6 +15,7 @@ Daily game inspired by Wordle, videogames, and nostalgia
 ![NPM](https://img.shields.io/badge/NPM-%23CB3837.svg?style=for-the-badge&logo=npm&logoColor=white)
 ![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
 ![Figma](https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white)
+
 ## 📸 Screenshots
 
 ![App Screenshot](https://github.com/KojinKuro/ludole/assets/11234292/b39639a0-5457-4c81-a913-ca50da9994f8)
@@ -23,6 +23,7 @@ Daily game inspired by Wordle, videogames, and nostalgia
 ## 📝 Overview
 
 Ludole is a daily game inspired by Wordle and classic videogames. Each day, players are presented with a randomly selected game cover that is initially blurred. Players have 8 attempts to guess the game title, with each incorrect guess slightly unblurring the image. This project focuses on building a building out a fullstack application, exposing us to [backend technologies](https://github.com/KojinKuro/ludole-api).
+
 ## ✨ Features
 
 - Randomly generated game cover each day
@@ -33,6 +34,7 @@ Ludole is a daily game inspired by Wordle and classic videogames. Each day, play
 - Data fetching using the Fetch API
 - [Custom-built REST API](https://github.com/KojinKuro/ludole-api)
 - PostgreSQL server for data storage
+
 ## 🎥 Demo
 
 [https://ludole.vercel.app/](https://ludole.vercel.app/)
@@ -49,6 +51,7 @@ To run Ludole locally, you will need to set up the [backend](https://github.com/
 ```
 
 The server should be running on: `localhost:5173`
+
 ## 🧪 Running Tests
 
 To run our Cypress tests, run the following command
@@ -58,9 +61,11 @@ To run our Cypress tests, run the following command
 ```
 
 From there the Cypress test runner will run. For more information on Cypress, check out the [Cypress documentation](https://www.cypress.io/)
+
 ## 🏫 Context
 
 Ludole was developed in one week at the Turing School of Software & Design. The project was a group effort by four frontend developers, totaling approximately 90 combined programming hours. The primary goal was to build a comprehensive full-stack application.
+
 ## 📚 Lessons Learned
 
 The primary objective was to create a full-stack application utilizing React for the frontend and Express, Knex, and PostgreSQL for the backend. We succeed in achieving these goals, and learned a lot from doing this. Key takeaways included understanding the importance of prioritizing essential features for the MVP and navigating extensive documentation. We found alternative resources like developer gists, YouTube tutorials, and mentor guidance to be particularly helpful.
@@ -69,13 +74,13 @@ Deploying the backend on a cloud provider was initially intimidating, but using 
 
 Most team members focused on backend learning, while some reinforced frontend concepts such as Cypress testing, prop-types checking, and responsive design implementation.
 
-
 ## 👥 Authors
 
 - Brandon Doza - [@BrandonDoza](https://github.com/BrandonDoza)
 - Charles Kwang - [@KojinKuro](https://github.com/KojinKuro)
 - Gwyneth Patrick - [@moth-dust](https://github.com/moth-dust)
 - Lydia Sims - [@LISims88](https://github.com/LISims88)
+
 ## 📄 License
 
 [MIT](https://choosealicense.com/licenses/mit/)
