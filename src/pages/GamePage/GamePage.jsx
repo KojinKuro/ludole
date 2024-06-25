@@ -8,6 +8,7 @@ import Guesses from "../../components/Guesses/Guesses";
 import ImageBlur from "../../components/ImageBlur/ImageBlur";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import { getChallenge } from "../../javascript/apiCalls";
+import { getLocalDate } from "../../javascript/date";
 import { findGameObject } from "../../javascript/game";
 import { compareGuesses, createGuess } from "../../javascript/guess";
 import "./GamePage.css";
@@ -57,16 +58,15 @@ export default function GamePage({ games, totalGuesses = 8 }) {
   });
 
   const { date } = useParams();
-  let formattedDate;
-  if (!date) {
-    formattedDate = new Date();
-  } else {
-    // fix timezone issue
-    formattedDate = new Date(date);
-    formattedDate = new Date(
-      formattedDate.valueOf() + formattedDate.getTimezoneOffset() * 60 * 1000
-    );
-  }
+
+  useEffect(() => {
+    const localDate = !date ? new Date() : getLocalDate(date);
+    const formattedDate = formatDate(localDate, "yyyy-MM-dd");
+
+    getChallenge(formattedDate).then((challenge) => {
+      dispatch({ type: "SET_CHALLENGE", challenge: challenge });
+    });
+  }, [date]);
 
   useEffect(() => {
     dispatch({
@@ -75,12 +75,6 @@ export default function GamePage({ games, totalGuesses = 8 }) {
       totalGuesses: totalGuesses,
     });
   }, [games, totalGuesses]);
-
-  useEffect(() => {
-    getChallenge(formatDate(formattedDate, "yyyy-MM-dd")).then((challenge) => {
-      dispatch({ type: "SET_CHALLENGE", challenge: challenge });
-    });
-  }, [date]);
 
   const checkGuess = (guess) => {
     dispatch({ type: "CHECK_GUESS", guess: guess });

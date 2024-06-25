@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import "./Guesses.css";
 
 function calculateBackgroundColor(number) {
-  if (number <= 0) {
+  if (number < 0) {
     return "#808080";
   } else if (number <= 25) {
     return "#FF4400";
@@ -27,7 +27,7 @@ export default function Guesses({ totalGuesses = 8, guessArray = [] }) {
   if (guessArray.length > MAX_GUESSES) return;
 
   const emptyBoxNumber = MAX_GUESSES - guessArray.length;
-  const boxes = [...guessArray, ...Array(emptyBoxNumber).fill(["", 0])];
+  const boxes = [...guessArray, ...Array(emptyBoxNumber).fill(["", -1])];
 
   const boxElements = boxes.map((box, index) => {
     const [guess, number] = box;

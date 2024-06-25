@@ -6,8 +6,9 @@ export function compareGuesses(guess, answer) {
   if (!guess || !answer) return 0;
   if (guess.game_id === answer.game_id) return 100;
 
-  // we test for 7 categories and 7 * 14.28... = 100
-  const MAX_CATEGORY_POINTS = 14.2857143;
+  const MAX_POINTS = 100;
+  const CATEGORY_COUNT = 7;
+  const MAX_CATEGORY_POINTS = MAX_POINTS / CATEGORY_COUNT;
   let pointTotal = 0;
 
   const calculateSimilarity = (comparisonArray, targetArray) => {

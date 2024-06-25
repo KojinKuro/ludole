@@ -1,3 +1,5 @@
+import { format } from "date-fns";
+
 const SAVE_FILE_NAME = "save_file";
 
 function loadGame() {
@@ -5,8 +7,13 @@ function loadGame() {
   return JSON.parse(saveFileText);
 }
 
-function saveGame(information) {
-  localStorage.setItem(SAVE_FILE_NAME, JSON.stringify(information));
+function saveGame(saveInformation) {
+  localStorage.setItem(SAVE_FILE_NAME, JSON.stringify(saveInformation));
+}
+
+function saveGameDate(date, saveInformation) {
+  const { guessHistory, hasWon } = saveInformation;
+  saveGame({ ...loadGame() });
 }
 
 function resetGame() {
@@ -17,12 +24,10 @@ function resetGame() {
 
 {
   "2024-06-17": {
-    guessCount: 0,
     guessHistory: [],
     hasWon: false,
   },
   "2024-06-18": {
-    guessCount: 0,
     guessHistory: [],
     hasWon: false,
   },
