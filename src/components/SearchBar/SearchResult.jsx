@@ -1,13 +1,13 @@
-import { Container } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import "./SearchResult.css";
 
 export default function SearchResult({ game, onClick, selected }) {
   return (
-    <Container
+    <Box
       onClick={() => onClick()}
       className={"search-result" + (selected ? " selected" : "")}
     >
       {game.title}
-    </Container>
+    </Box>
   );
 }

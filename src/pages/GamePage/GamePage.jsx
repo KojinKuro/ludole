@@ -24,7 +24,10 @@ function reducer(state, action) {
         ...state,
         hasWon: Boolean(evaluation === 100),
         guessCount: state.guessCount + 1,
-        guessHistory: [...state.guessHistory, createGuess(action.guess)],
+        guessHistory: [
+          ...state.guessHistory,
+          createGuess(action.guess, evaluation),
+        ],
       };
     case "SET_CHALLENGE":
       return {

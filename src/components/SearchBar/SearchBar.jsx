@@ -25,7 +25,7 @@ export default function SearchBar({ games, onSearch = () => {} }) {
   const searchResultsJSX = searchResults.map((game, index) => (
     <SearchResult
       selected={index === resultIndex}
-      key={game.id}
+      key={game.game_id}
       game={game}
       onClick={() => submitSearch(game.title)}
     />

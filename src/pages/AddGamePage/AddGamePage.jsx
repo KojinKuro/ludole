@@ -167,6 +167,7 @@ export default function AddGame({ addNewGame }) {
             onClick={submitGame}
             colorScheme="purple"
             className="submit-button"
+            ali
           >
             Submit Game
           </Button>

@@ -25,21 +25,7 @@
   word-break: break-all;
 }
 
-.guess.red {
-  background-color: rgb(240, 167, 167);
-}
 
-.guess.yellow {
-  background-color: rgb(237, 237, 158);
-}
-
-.guess.blue {
-  background-color: rgb(158, 158, 239);
-}
-
-.guess.green {
-  background-color: rgb(169, 237, 169);
-}
 
 @media (max-width: 430px) {
   .guess-container {
@@ -57,4 +43,20 @@
     width: 85%;
     font-size: large;
   }
+} */
+
+/* .guess.red {
+  background-color: rgb(240, 167, 167);
+}
+
+.guess.yellow {
+  background-color: rgb(237, 237, 158);
+}
+
+.guess.blue {
+  background-color: rgb(158, 158, 239);
+}
+
+.guess.green {
+  background-color: rgb(169, 237, 169);
 } */

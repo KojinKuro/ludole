@@ -7,19 +7,22 @@ import {
   UnorderedList,
 } from "@chakra-ui/react";
 import PropTypes from "prop-types";
+import { useEffect, useState } from "react";
 import { checkIfImageExists } from "../../javascript/image";
 
 export default function FormDisplay({ formData }) {
+  const [imageExists, setImageExists] = useState(false);
+
+  useEffect(() => {
+    checkIfImageExists(formData.imagesrc, setImageExists);
+  }, [formData]);
+
   return (
     <Card>
       <Heading>
         {formData.title} ({formData.year})
       </Heading>
-      <Skeleton
-        isLoaded={
-          formData.imagesrc !== "" && checkIfImageExists(formData.imagesrc)
-        }
-      >
+      <Skeleton isLoaded={formData.imagesrc !== "" && imageExists}>
         <Image
           width="100%"
           height="100%"
