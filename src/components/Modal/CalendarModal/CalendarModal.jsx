@@ -24,7 +24,6 @@ export default function CalendarModal() {
 
   const navigateDate = (chosenDate) => {
     const navigateDate = chosenDate || date;
-    console.log(navigateDate);
     if (!navigateDate) return;
 
     navigate(`/challenge/${formatDate(navigateDate, "yyyy-MM-dd")}`);

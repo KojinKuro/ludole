@@ -28,10 +28,8 @@ export default function Guesses({ totalGuesses = 8, guessArray = [] }) {
 
   const emptyBoxNumber = MAX_GUESSES - guessArray.length;
   const boxes = [...guessArray, ...Array(emptyBoxNumber).fill(["", -1])];
-
   const boxElements = boxes.map((box, index) => {
     const [guess, number] = box;
-
     return (
       <Container
         height={7}

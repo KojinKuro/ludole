@@ -67,18 +67,6 @@ export default function StatsModal() {
     gameStats.guessData.push(0);
   }
 
-  const myData = {
-    labels: Object.keys(gameStats.guessData).map((val) => {
-      return parseInt(val) + 1;
-    }),
-    datasets: [
-      {
-        label: "Guess Distribution",
-        data: gameStats.guessData,
-      },
-    ],
-  };
-
   const resetStats = () => {
     resetGame();
     onClose();
@@ -108,7 +96,17 @@ export default function StatsModal() {
               </Box>
               <Bar
                 options={{ indexAxis: "y", responsive: true }}
-                data={myData}
+                data={{
+                  labels: Object.keys(gameStats.guessData).map(
+                    (val) => parseInt(val) + 1
+                  ),
+                  datasets: [
+                    {
+                      label: "Guess Distribution",
+                      data: gameStats.guessData,
+                    },
+                  ],
+                }}
               />
             </Flex>
           </ModalBody>

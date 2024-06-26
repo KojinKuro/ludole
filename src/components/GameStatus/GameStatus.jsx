@@ -7,7 +7,6 @@ import "./GameStatus.css";
 
 export default function GameStatus({ numGuesses, totalGuesses, hasWon }) {
   let displayText;
-
   if (hasWon) {
     displayText = `Solved ${numGuesses}/${totalGuesses}`;
   } else if (numGuesses === totalGuesses) {
