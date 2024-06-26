@@ -34,36 +34,29 @@ export default function StatsModal() {
   const gameStats = Object.keys(saveData || {}).reduce(
     (gameStats, date) => {
       const { hasWon, guessHistory, totalGuesses } = saveData[date];
+      const { gamesWon, gamesPlayed, maxGuesses, guessData } = gameStats;
       const guessCount = guessHistory.length;
       const gameCompleted = Boolean(hasWon || guessCount === totalGuesses);
 
-      while (guessCount > gameStats.guessData.length) {
-        gameStats.guessData.push(0);
-      }
-
-      if (gameCompleted) gameStats.guessData[guessCount - 1] += 1;
+      while (guessCount > guessData.length) guessData.push(0);
+      if (gameCompleted) guessData[guessCount - 1] += 1;
 
       return {
-        gamesPlayed: gameCompleted
-          ? gameStats.gamesPlayed + 1
-          : gameStats.gamesPlayed,
-        gamesWon: hasWon ? gameStats.gamesWon + 1 : gameStats.gamesWon,
-        guessData: gameStats.guessData,
-        maxTotalGuesses:
-          totalGuesses > gameStats.maxTotalGuesses
-            ? totalGuesses
-            : gameStats.maxTotalGuesses,
+        gamesPlayed: gameCompleted ? gamesPlayed + 1 : gamesPlayed,
+        gamesWon: hasWon ? gamesWon + 1 : gamesWon,
+        guessData: guessData,
+        maxGuesses: totalGuesses > maxGuesses ? totalGuesses : maxGuesses,
       };
     },
     {
       gamesPlayed: 0,
       gamesWon: 0,
       guessData: [],
-      maxTotalGuesses: 0,
+      maxGuesses: 0,
     }
   );
 
-  while (gameStats.guessData.length < gameStats.maxTotalGuesses) {
+  while (gameStats.guessData.length < gameStats.maxGuesses) {
     gameStats.guessData.push(0);
   }
 

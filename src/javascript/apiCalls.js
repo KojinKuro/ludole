@@ -3,10 +3,10 @@ const API_URL = "https://ludole-api.onrender.com";
 function getGames() {
   return fetch(`${API_URL}/api/v1/game`).then((r) => {
     if (!r.ok) {
-      throw new Error("Oops, something went wrong! Please reload the page.");
+      throw new Error("Failed to grab games. Try again.");
+    } else {
+      return r.json();
     }
-
-    return r.json();
   });
 }
 
@@ -15,9 +15,9 @@ function getChallenge(date) {
   return fetch(`${API_URL}/api/v1/challenge/${date}`).then((r) => {
     if (!r.ok) {
       throw new Error("Error grabbing challenge.");
+    } else {
+      return r.json();
     }
-
-    return r.json();
   });
 }
 
@@ -27,12 +27,10 @@ function postGame(newGame) {
     body: JSON.stringify(newGame),
     headers: { "Content-Type": "application/json" },
   }).then((res) => {
-    if (res.ok) {
-      document.getElementById("success").innerText =
-        "Game Successfully Submitted";
-      return res.json();
+    if (!res.ok) {
+      throw new Error("Failed to post.");
     } else {
-      throw new Error("Oops, something went wrong!");
+      return res.json();
     }
   });
 }

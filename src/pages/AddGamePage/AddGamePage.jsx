@@ -9,12 +9,14 @@ import {
   SimpleGrid,
 } from "@chakra-ui/react";
 import { useState } from "react";
+import { useErrorBoundary } from "react-error-boundary";
 import FormDisplay from "../../components/FormDisplay/FormDisplay";
 import { postGame } from "../../javascript/apiCalls";
 import "./AddGamePage.css";
 
-export default function AddGame({ addNewGame }) {
+export default function AddGame() {
   //pass setter function in for allGames as prop
+  const { showBoundary } = useErrorBoundary();
   const [formData, setFormData] = useState({
     title: "",
     imagesrc: "",
@@ -38,8 +40,7 @@ export default function AddGame({ addNewGame }) {
   }
 
   function handleArrayChange(e, name) {
-    const string = e.target.value;
-    if (string !== "") {
+    if (e.target.value !== "") {
       setFormData((prevFormData) => ({
         ...prevFormData,
         [name]: string.split(","),
@@ -49,17 +50,11 @@ export default function AddGame({ addNewGame }) {
 
   function submitGame(e) {
     e.preventDefault();
-    const newGame = formData;
-    postGame(newGame)
+    postGame(formData)
       .then((data) => {
-        addNewGame(data);
         clearForm();
       })
-      .catch((err) => {
-        document.getElementById("success").innerText =
-          "There was a problem submitting your game";
-        console.error(err);
-      });
+      .catch(showBoundary);
   }
 
   function clearForm() {
@@ -80,7 +75,6 @@ export default function AddGame({ addNewGame }) {
     document.querySelector('input[id="5"]').value = "";
   }
 
-  // console.log('game', formData);
   return (
     <Flex direction="column">
       <Heading textAlign="center">Add Your Own Game</Heading>
@@ -167,7 +161,6 @@ export default function AddGame({ addNewGame }) {
             onClick={submitGame}
             colorScheme="purple"
             className="submit-button"
-            ali
           >
             Submit Game
           </Button>

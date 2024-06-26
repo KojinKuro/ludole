@@ -1,3 +1,9 @@
+import ErrorComponent from "../../components/ErrorComponent/ErrorComponent";
+
 export default function MissingPage() {
-  return <main>404 error page</main>;
+  return (
+    <ErrorComponent
+      error={{ name: "404", message: "This page is not a valid route." }}
+    />
+  );
 }

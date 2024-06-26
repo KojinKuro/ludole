@@ -1,14 +1,15 @@
-import { Flex, Heading, Skeleton } from "@chakra-ui/react";
+import { Flex, Heading } from "@chakra-ui/react";
 import { formatDate } from "date-fns";
 import PropTypes from "prop-types";
-import { useEffect, useReducer } from "react";
+import { useEffect, useReducer, useState } from "react";
+import { useErrorBoundary } from "react-error-boundary";
 import { useParams } from "react-router";
 
 import GameStatus from "../../components/GameStatus/GameStatus";
 import Guesses from "../../components/Guesses/Guesses";
 import ImageBlur from "../../components/ImageBlur/ImageBlur";
 import SearchBar from "../../components/SearchBar/SearchBar";
-import { getChallenge } from "../../javascript/apiCalls";
+import { getChallenge, getGames } from "../../javascript/apiCalls";
 import { getLocalDate } from "../../javascript/date";
 import { findGameObject } from "../../javascript/game";
 import { compareGuesses, createGuess } from "../../javascript/guess";
@@ -58,7 +59,9 @@ function reducer(state, action) {
   return state;
 }
 
-export default function GamePage({ games, totalGuesses = 8 }) {
+export default function GamePage({ totalGuesses = 8 }) {
+  const [games, setGames] = useState([]);
+  const { showBoundary } = useErrorBoundary();
   const { date } = useParams();
   const [state, dispatch] = useReducer(reducer, {
     totalGuesses: totalGuesses,
@@ -70,16 +73,23 @@ export default function GamePage({ games, totalGuesses = 8 }) {
   });
 
   useEffect(() => {
+    getGames().then(setGames).catch(showBoundary);
+  }, []);
+
+  useEffect(() => {
     const localDate = !date ? new Date() : getLocalDate(date);
     const formattedDate = formatDate(localDate, "yyyy-MM-dd");
+    document.title = `Ludole ${formatDate(localDate, "MM-dd")}`;
 
-    getChallenge(formattedDate).then((challenge) => {
-      dispatch({
-        type: "URL_UPDATE",
-        challenge: challenge,
-        date: formattedDate,
-      });
-    });
+    getChallenge(formattedDate)
+      .then((challenge) => {
+        dispatch({
+          type: "URL_UPDATE",
+          challenge: challenge,
+          date: formattedDate,
+        });
+      })
+      .catch(showBoundary);
   }, [date]);
 
   useEffect(() => {
@@ -120,18 +130,18 @@ export default function GamePage({ games, totalGuesses = 8 }) {
 }
 
 GamePage.propTypes = {
-  games: PropTypes.arrayOf(
-    PropTypes.shape({
-      game_id: PropTypes.number.isRequired,
-      title: PropTypes.string.isRequired,
-      imagesrc: PropTypes.string.isRequired,
-      year: PropTypes.number.isRequired,
-      genre: PropTypes.arrayOf(PropTypes.string).isRequired,
-      themes: PropTypes.arrayOf(PropTypes.string).isRequired,
-      console: PropTypes.arrayOf(PropTypes.string).isRequired,
-      developer: PropTypes.arrayOf(PropTypes.string).isRequired,
-      publisher: PropTypes.arrayOf(PropTypes.string).isRequired,
-    })
-  ).isRequired,
+  // games: PropTypes.arrayOf(
+  //   PropTypes.shape({
+  //     game_id: PropTypes.number.isRequired,
+  //     title: PropTypes.string.isRequired,
+  //     imagesrc: PropTypes.string.isRequired,
+  //     year: PropTypes.number.isRequired,
+  //     genre: PropTypes.arrayOf(PropTypes.string).isRequired,
+  //     themes: PropTypes.arrayOf(PropTypes.string).isRequired,
+  //     console: PropTypes.arrayOf(PropTypes.string).isRequired,
+  //     developer: PropTypes.arrayOf(PropTypes.string).isRequired,
+  //     publisher: PropTypes.arrayOf(PropTypes.string).isRequired,
+  //   })
+  // ).isRequired,
   totalGuesses: PropTypes.number,
 };
