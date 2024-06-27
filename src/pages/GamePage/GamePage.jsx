@@ -79,7 +79,7 @@ export default function GamePage({ totalGuesses = 8 }) {
   useEffect(() => {
     const localDate = !date ? new Date() : getLocalDate(date);
     const formattedDate = formatDate(localDate, "yyyy-MM-dd");
-    document.title = `Ludole ${formatDate(localDate, "MM-dd")}`;
+    document.title = `Ludole (${formatDate(localDate, "MM-dd")})`;
 
     getChallenge(formattedDate)
       .then((challenge) => {

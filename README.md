@@ -70,7 +70,7 @@ Ludole was developed in one week at the Turing School of Software & Design. The 
 
 The primary objective was to create a full-stack application utilizing React for the frontend and Express, Knex, and PostgreSQL for the backend. We succeed in achieving these goals, and learned a lot from doing this. Key takeaways included understanding the importance of prioritizing essential features for the MVP and navigating extensive documentation. We found alternative resources like developer gists, YouTube tutorials, and mentor guidance to be particularly helpful.
 
-Deploying the backend on a cloud provider was initially intimidating, but using [Render.com](https://render.com/) simplified the process. The fact that their service was free as well was a nice bonus. This also included learning how to setup a `.env` and keeping our environment variables safe to make sure no one could mess with our database.
+Deploying the backend on a cloud provider was initially intimidating, but using [Render.com](https://render.com/) simplified the process. The fact that their service was free as well was a nice bonus. This also included learning how to setup a `.env` and keeping our environment variables safe to make sure no one could mess with our database. We have since switched to using Vercel after our 30 day free database expired on Render.
 
 Most team members focused on backend learning, while some reinforced frontend concepts such as Cypress testing, prop-types checking, and responsive design implementation.
 
