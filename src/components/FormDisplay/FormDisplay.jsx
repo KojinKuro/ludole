@@ -8,13 +8,13 @@ import {
 } from "@chakra-ui/react";
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
-import { checkIfImageExists } from "../../javascript/image";
+import { isValidImageURL } from "../../javascript/image";
 
 export default function FormDisplay({ formData }) {
   const [imageExists, setImageExists] = useState(false);
 
   useEffect(() => {
-    checkIfImageExists(formData.imagesrc, setImageExists);
+    isValidImageURL(formData.imagesrc).then(setImageExists);
   }, [formData]);
 
   return (
@@ -22,7 +22,7 @@ export default function FormDisplay({ formData }) {
       <Heading>
         {formData.title} ({formData.year})
       </Heading>
-      <Skeleton isLoaded={formData.imagesrc !== "" && imageExists}>
+      <Skeleton isLoaded={imageExists}>
         <Image
           width="100%"
           height="100%"
@@ -73,7 +73,7 @@ FormDisplay.propTypes = {
   formData: PropTypes.shape({
     title: PropTypes.string,
     imagesrc: PropTypes.string,
-    year: PropTypes.string,
+    year: PropTypes.number,
     genre: PropTypes.arrayOf(PropTypes.string),
     themes: PropTypes.arrayOf(PropTypes.string),
     console: PropTypes.arrayOf(PropTypes.string),

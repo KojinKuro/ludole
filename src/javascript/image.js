@@ -1,19 +1,11 @@
-function checkIfImageExists(url, callback) {
+function isValidImageURL(url) {
   const img = new Image();
   img.src = url;
 
-  if (img.complete) callback(true);
-  else {
-    img.onload = () => {
-      callback(true);
-    };
-
-    img.onerror = () => {
-      callback(false);
-    };
-  }
+  return new Promise((resolve) => {
+    img.onload = () => resolve(true);
+    img.onerror = () => resolve(false);
+  });
 }
 
-// https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg
-
-export { checkIfImageExists };
+export { isValidImageURL };

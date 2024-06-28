@@ -1,4 +1,5 @@
-const API_URL = "https://ludole-api.vercel.app";
+// const API_URL = "https://ludole-api.vercel.app";
+const API_URL = "http://localhost:8000";
 
 function getGames() {
   return fetch(`${API_URL}/api/v1/game`).then((r) => {

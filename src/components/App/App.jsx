@@ -3,7 +3,7 @@ import { ErrorBoundary } from "react-error-boundary";
 import { Route, Routes } from "react-router-dom";
 
 import AboutPage from "../../pages/AboutPage/AboutPage";
-import AddGame from "../../pages/AddGamePage/AddGamePage";
+import AddGamePage from "../../pages/AddGamePage/AddGamePage";
 import GamePage from "../../pages/GamePage/GamePage";
 import MissingPage from "../../pages/MissingPage/MissingPage";
 import ErrorComponent from "../ErrorComponent/ErrorComponent";
@@ -21,7 +21,7 @@ function App() {
             <Route path="/" element={<GamePage />} />
             <Route path="/challenge/:date" element={<GamePage />} />
             <Route path="/about" element={<AboutPage />} />
-            <Route path="/addgame" element={<AddGame />} />
+            <Route path="/addgame" element={<AddGamePage />} />
             <Route path="*" element={<MissingPage />} />
           </Routes>
         </ErrorBoundary>
