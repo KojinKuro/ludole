@@ -23,10 +23,10 @@ export default function CalendarModal() {
   const [date, setDate] = useState();
 
   const navigateDate = (chosenDate) => {
-    const navigateDate = chosenDate || date;
-    if (!navigateDate) return;
+    const dateToNavigate = chosenDate || date;
+    if (!dateToNavigate) return;
 
-    navigate(`/challenge/${formatDate(navigateDate, "yyyy-MM-dd")}`);
+    navigate(`/challenge/${formatDate(dateToNavigate, "yyyy-MM-dd")}`);
     onClose();
   };
 
@@ -55,7 +55,12 @@ export default function CalendarModal() {
             >
               Go to today
             </Button>
-            <Button colorScheme="blue" mr={3} onClick={() => navigateDate()}>
+            <Button
+              colorScheme="blue"
+              mr={3}
+              onClick={() => navigateDate()}
+              isDisabled={!Boolean(date)}
+            >
               Go to Challenge
             </Button>
           </ModalFooter>
