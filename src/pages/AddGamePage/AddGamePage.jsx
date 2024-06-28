@@ -9,6 +9,7 @@ import {
   Input,
   SimpleGrid,
   Stack,
+  useToast,
 } from "@chakra-ui/react";
 import { isNumber } from "chart.js/helpers";
 import { useReducer } from "react";
@@ -109,6 +110,7 @@ function reducer(state, action) {
 export default function AddGame() {
   const { showBoundary } = useErrorBoundary();
   const [state, dispatch] = useReducer(reducer, initialState);
+  const toast = useToast();
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -123,9 +125,28 @@ export default function AddGame() {
 
   function submitGame(e) {
     e.preventDefault();
-    postGame(state.formattedFormData)
-      .then(() => dispatch({ type: "CLEAR_FORM" }))
-      .catch(showBoundary);
+
+    let errorMessage;
+    const postPromise = postGame(state.formattedFormData);
+    postPromise.then(() => dispatch({ type: "CLEAR_FORM" }));
+
+    toast.promise(postPromise, {
+      success: {
+        title: "Post successful.",
+        description: `We managed to send ${state.formattedFormData.title} to our database.`,
+        position: "bottom-left",
+      },
+      error: {
+        title: "Post failed.",
+        description: `There was some kind of error posting your game. Try again later.`,
+        position: "bottom-left",
+      },
+      loading: {
+        title: "Post pending.",
+        description: "Please wait ...",
+        position: "bottom-left",
+      },
+    });
   }
 
   function disableButton() {

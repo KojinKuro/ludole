@@ -1,6 +1,7 @@
 import {
   Button,
   Link as ChakraLink,
+  Container,
   Drawer,
   DrawerBody,
   DrawerCloseButton,
@@ -8,14 +9,17 @@ import {
   DrawerFooter,
   DrawerHeader,
   DrawerOverlay,
-  Flex,
   IconButton,
+  ListItem,
+  Stack,
+  Text,
+  UnorderedList,
   useDisclosure,
 } from "@chakra-ui/react";
 import { useRef } from "react";
 import { Link as ReactRouterLink } from "react-router-dom";
 
-export default function MobileMenu() {
+export default function HamburgerMenu() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef();
 
@@ -31,17 +35,17 @@ export default function MobileMenu() {
       </IconButton>
       <Drawer
         isOpen={isOpen}
-        placement="right"
+        placement="left"
         onClose={onClose}
         finalFocusRef={btnRef}
       >
         <DrawerOverlay />
         <DrawerContent>
           <DrawerCloseButton />
-          <DrawerHeader>Create your account</DrawerHeader>
+          <DrawerHeader>Navigate</DrawerHeader>
 
           <DrawerBody>
-            <Flex direction="column">
+            <Stack>
               <ChakraLink as={ReactRouterLink} to="/" onClick={onClose}>
                 Home
               </ChakraLink>
@@ -51,14 +55,14 @@ export default function MobileMenu() {
               <ChakraLink as={ReactRouterLink} to="/addgame" onClick={onClose}>
                 Add Game
               </ChakraLink>
-            </Flex>
+            </Stack>
           </DrawerBody>
 
           <DrawerFooter>
-            <Button variant="outline" mr={3} onClick={onClose}>
+            {/* <Button variant="outline" mr={3} onClick={onClose}>
               Cancel
             </Button>
-            <Button colorScheme="blue">Save</Button>
+            <Button colorScheme="blue">Save</Button> */}
           </DrawerFooter>
         </DrawerContent>
       </Drawer>

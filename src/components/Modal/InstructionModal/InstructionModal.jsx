@@ -29,6 +29,7 @@ export default function InstructionModal() {
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>How to Play</ModalHeader>
+          <ModalCloseButton />
           <ModalBody>
             <Text>Guess the video game in 8 tries</Text>
             <UnorderedList>

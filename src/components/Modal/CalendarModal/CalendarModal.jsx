@@ -1,5 +1,7 @@
 import {
   Button,
+  Container,
+  Flex,
   IconButton,
   Modal,
   ModalBody,
@@ -44,7 +46,9 @@ export default function CalendarModal() {
           <ModalHeader>Calendar</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <Calendar onChange={setDate} maxDate={new Date()} />
+            <Flex justifyContent="center">
+              <Calendar onChange={setDate} maxDate={new Date()} />
+            </Flex>
           </ModalBody>
           <ModalFooter>
             <Button
