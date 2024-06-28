@@ -12,7 +12,7 @@ import "./AboutPage.css";
 
 export default function AboutPage() {
   return (
-    <Box>
+    <Flex direction="column" gap="10px">
       <Heading as="h1">About</Heading>
 
       <Heading as="h2" size="lg">
@@ -79,6 +79,6 @@ export default function AboutPage() {
       </Text>
 
       <Text>Thank you for checking out Ludole. Let the guessing begin!</Text>
-    </Box>
+    </Flex>
   );
 }

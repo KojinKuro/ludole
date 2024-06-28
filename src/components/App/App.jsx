@@ -15,7 +15,7 @@ function App() {
   return (
     <>
       <Header />
-      <Container as="main" maxW="4xl">
+      <Container as="main" maxW="4xl" padding="15px">
         <ErrorBoundary FallbackComponent={ErrorComponent}>
           <Routes>
             <Route path="/" element={<GamePage />} />

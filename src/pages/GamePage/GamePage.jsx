@@ -1,4 +1,4 @@
-import { Flex, Heading } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 import { formatDate } from "date-fns";
 import PropTypes from "prop-types";
 import { useEffect, useReducer, useState } from "react";
@@ -105,8 +105,7 @@ export default function GamePage({ totalGuesses = 8 }) {
   };
 
   return (
-    <Flex as="main" direction="column" id="game">
-      <Heading textAlign="center">{state.date}</Heading>
+    <Flex as="main" direction="column" id="game" gap="15px">
       <ImageBlur
         size="500px"
         src={state.challenge?.imagesrc}

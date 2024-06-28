@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   Flex,
   FormControl,
@@ -158,10 +159,13 @@ export default function AddGame() {
 
   return (
     <Flex direction="column">
-      <Heading textAlign="center">Add Your Own Game</Heading>
-      <SimpleGrid columns={2}>
-        <FormDisplay formData={state.formattedFormData} />
+      <SimpleGrid columns={2} gap="20px">
+        <Box>
+          <Heading size="s">Game Preview</Heading>
+          <FormDisplay formData={state.formattedFormData} />
+        </Box>
         <Stack as="form" className="form">
+          <Heading textAlign="center">Add A Game</Heading>
           <FormControl isRequired isInvalid={state.isError.title}>
             <FormLabel>Game Title</FormLabel>
             {!state.isError.title ? (
