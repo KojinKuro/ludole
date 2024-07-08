@@ -1,7 +1,5 @@
 import {
-  Button,
   Link as ChakraLink,
-  Container,
   Drawer,
   DrawerBody,
   DrawerCloseButton,
@@ -10,10 +8,7 @@ import {
   DrawerHeader,
   DrawerOverlay,
   IconButton,
-  ListItem,
   Stack,
-  Text,
-  UnorderedList,
   useDisclosure,
 } from "@chakra-ui/react";
 import { useRef } from "react";

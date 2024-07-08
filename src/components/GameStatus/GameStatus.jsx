@@ -2,7 +2,7 @@
 // ex: 3, 9, true
 import PropTypes from "prop-types";
 
-import { Container, Heading } from "@chakra-ui/react";
+import { Heading } from "@chakra-ui/react";
 import "./GameStatus.css";
 
 export default function GameStatus({ numGuesses, totalGuesses, hasWon }) {

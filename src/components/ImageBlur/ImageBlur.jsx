@@ -1,4 +1,4 @@
-import { Box, Container, Image, Skeleton } from "@chakra-ui/react";
+import { Container, Image, Skeleton } from "@chakra-ui/react";
 import PropTypes from "prop-types";
 import "./ImageBlur.css";
 

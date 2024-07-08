@@ -24,7 +24,7 @@ import { Bar } from "react-chartjs-2";
 Chart.register(CategoryScale, BarController, BarElement, LinearScale);
 
 import { useNavigate } from "react-router";
-import { loadGame, resetGame } from "../../../javascript/save";
+import { loadGame, resetGame } from "../../../utils/save";
 
 export default function StatsModal() {
   const { isOpen, onOpen, onClose } = useDisclosure();

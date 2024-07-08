@@ -1,6 +1,5 @@
 import {
   Button,
-  Container,
   Flex,
   IconButton,
   Modal,
@@ -10,7 +9,6 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-  Text,
   useDisclosure,
 } from "@chakra-ui/react";
 import { formatDate } from "date-fns";

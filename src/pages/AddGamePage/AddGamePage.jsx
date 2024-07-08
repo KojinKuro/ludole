@@ -17,8 +17,8 @@ import { useReducer } from "react";
 import { useErrorBoundary } from "react-error-boundary";
 
 import FormDisplay from "../../components/FormDisplay/FormDisplay";
-import { postGame } from "../../javascript/apiCalls";
-import { isValidImageURL } from "../../javascript/image";
+import { postGame } from "../../utils/apiCalls";
+import { isValidImageURL } from "../../utils/image";
 import "./AddGamePage.css";
 
 const initialState = {

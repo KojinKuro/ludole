@@ -8,7 +8,7 @@ import {
 } from "@chakra-ui/react";
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
-import { isValidImageURL } from "../../javascript/image";
+import { isValidImageURL } from "../../utils/image";
 
 export default function FormDisplay({ formData }) {
   const [imageExists, setImageExists] = useState(false);

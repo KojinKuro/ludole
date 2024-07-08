@@ -15,7 +15,7 @@ export default function AboutPage() {
     <Flex direction="column" gap="10px">
       <Heading as="h1">About</Heading>
 
-      <Heading as="h2" size="lg">
+      <Heading as="h2" size="lg" marginTop={2}>
         About Ludole
       </Heading>
       <Text>
@@ -27,7 +27,7 @@ export default function AboutPage() {
         test your video game knowledge and discover new titles.
       </Text>
 
-      <Heading as="h2" size="lg">
+      <Heading as="h2" size="lg" marginTop={2.5}>
         Our Team
       </Heading>
       <Text>
@@ -78,7 +78,9 @@ export default function AboutPage() {
         attention to detail that shows in his work.
       </Text>
 
-      <Text>Thank you for checking out Ludole. Let the guessing begin!</Text>
+      <Text marginTop={10}>
+        Thank you for checking out Ludole. Let the guessing begin!
+      </Text>
     </Flex>
   );
 }

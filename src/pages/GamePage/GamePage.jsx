@@ -9,11 +9,11 @@ import GameStatus from "../../components/GameStatus/GameStatus";
 import Guesses from "../../components/Guesses/Guesses";
 import ImageBlur from "../../components/ImageBlur/ImageBlur";
 import SearchBar from "../../components/SearchBar/SearchBar";
-import { getChallenge, getGames } from "../../javascript/apiCalls";
-import { getLocalDate } from "../../javascript/date";
-import { findGameObject } from "../../javascript/game";
-import { compareGuesses, createGuess } from "../../javascript/guess";
-import { loadGameDate, saveGameDate } from "../../javascript/save";
+import { getChallenge, getGames } from "../../utils/apiCalls";
+import { getLocalDate } from "../../utils/date";
+import { findGameObject } from "../../utils/game";
+import { compareGuesses, createGuess } from "../../utils/guess";
+import { loadGameDate, saveGameDate } from "../../utils/save";
 import "./GamePage.css";
 
 function reducer(state, action) {
