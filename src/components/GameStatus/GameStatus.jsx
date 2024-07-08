@@ -2,19 +2,24 @@
 // ex: 3, 9, true
 import PropTypes from "prop-types";
 
+import { Heading } from "@chakra-ui/react";
 import "./GameStatus.css";
 
 export default function GameStatus({ numGuesses, totalGuesses, hasWon }) {
-  const getDisplay = () => {
-    if (hasWon) {
-      return <h2>{`Solved ${numGuesses}/${totalGuesses}`}</h2>;
-    } else if (numGuesses === totalGuesses) {
-      return <h2>You Lose, Game Over!</h2>;
-    } else {
-      return <h2>{`Attempts ${numGuesses}/${totalGuesses}`}</h2>;
-    }
-  };
-  return <div className="game-status">{getDisplay()}</div>;
+  let displayText;
+  if (hasWon) {
+    displayText = `Solved ${numGuesses}/${totalGuesses}`;
+  } else if (numGuesses === totalGuesses) {
+    displayText = "You Lose, Game Over!";
+  } else {
+    displayText = `Attempts ${numGuesses}/${totalGuesses}`;
+  }
+
+  return (
+    <Heading textAlign="center" as="h2" size="md" className="game-status">
+      {displayText}
+    </Heading>
+  );
 }
 
 GameStatus.propTypes = {

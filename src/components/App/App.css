@@ -1,13 +1,17 @@
-#game {
+#root {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
-  padding: 20px;
+
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
 }
 
 @media (max-width: 430px) {
-  #game {
-    width: 50%;
+  footer {
+    font-size: 0.55em;
   }
 }

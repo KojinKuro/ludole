@@ -1,4 +1,12 @@
-import { useEffect, useRef, useState } from "react";
+import {
+  Box,
+  Button,
+  Container,
+  Flex,
+  FormControl,
+  Input,
+} from "@chakra-ui/react";
+import { useRef, useState } from "react";
 import "./SearchBar.css";
 import SearchResult from "./SearchResult";
 
@@ -24,7 +32,7 @@ export default function SearchBar({ games, onSearch = () => {} }) {
   const searchResultsJSX = searchResults.map((game, index) => (
     <SearchResult
       selected={index === resultIndex}
-      key={game.id}
+      key={game.game_id}
       game={game}
       onClick={() => submitSearch(game.title)}
     />
@@ -38,11 +46,9 @@ export default function SearchBar({ games, onSearch = () => {} }) {
   const handleKey = (e) => {
     switch (e.key) {
       case "Enter":
-        if (resultIndex !== null) {
-          submitSearch(searchResults[resultIndex].title);
-        } else {
-          submitSearch(searchInput);
-        }
+        submitSearch(
+          resultIndex !== null ? searchResults[resultIndex].title : searchInput
+        );
         break;
       case "Escape":
         setSearchInput("");
@@ -71,23 +77,31 @@ export default function SearchBar({ games, onSearch = () => {} }) {
   };
 
   return (
-    <div className="search-bar-root">
-      <div className="search-bar-container">
-        {/* <label htmlFor="search-bar">Game Input</label> */}
-        <input
-          ref={inputRef}
-          onKeyDown={handleKey}
-          onChange={handleInput}
-          type="text"
-          placeholder="place your guess here ..."
-          name="search-bar"
-          value={searchInput}
-        />
-        {searchInput !== "" && (
-          <div className="search-results-container">{searchResultsJSX}</div>
-        )}
-      </div>
-      <button onClick={() => submitSearch(searchInput)}>Submit</button>
-    </div>
+    <Container>
+      <Flex>
+        <Flex className="search-bar-container" width="100%">
+          <FormControl>
+            <Input
+              flex="1"
+              ref={inputRef}
+              onKeyDown={handleKey}
+              onChange={handleInput}
+              placeholder="place your guess here ..."
+              name="search-bar"
+              value={searchInput}
+            />
+          </FormControl>
+          {searchInput !== "" && (
+            <Box className="search-results-container">{searchResultsJSX}</Box>
+          )}
+        </Flex>
+        <Button
+          isLoading={!games.length}
+          onClick={() => submitSearch(searchInput)}
+        >
+          Submit
+        </Button>
+      </Flex>
+    </Container>
   );
 }

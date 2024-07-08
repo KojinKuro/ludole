@@ -1,29 +1,41 @@
-import "./ImageBlur.css";
+import { Container, Image, Skeleton } from "@chakra-ui/react";
 import PropTypes from "prop-types";
+import "./ImageBlur.css";
 
 export default function ImageBlur({
   src,
   blur = 1,
-  width = "300px",
-  height = width,
-  alt,
+  size = "300px",
+  alt = "Video game box cover",
 }) {
-  const BLUR_FACTOR = 500;
-  const blurAmount = (parseInt(width.split("px")) * blur) / BLUR_FACTOR;
+  const BLUR_FACTOR = 10;
+  const blurAmount = (parseInt(size.split("px")) * blur) / BLUR_FACTOR;
 
   return (
-    <div className="image-container">
-      <img src={src} alt={alt} style={{ filter: `blur(${blurAmount}px)` }} />
-    </div>
+    <Container
+      className="image-container"
+      p={0}
+      width={{ base: "100%", md: size }}
+      height={{ base: "70vh", md: size }}
+    >
+      <Skeleton width="100%" height="100%" isLoaded={src !== undefined}>
+        <Image
+          src={src}
+          alt={alt}
+          width={{ base: "100%", md: size }}
+          height={{ base: "100%", md: size }}
+          style={{ filter: `blur(${blurAmount}px)` }}
+        />
+      </Skeleton>
+    </Container>
   );
 }
 
 ImageBlur.propTypes = {
-  src: PropTypes.string.isRequired,
+  src: PropTypes.string,
   blur: PropTypes.number,
-  width: PropTypes.string,
-  height: PropTypes.string,
-  alt: PropTypes.string.isRequired,
+  size: PropTypes.string,
+  alt: PropTypes.string,
 };
 
 //https://www.kalmbachfeeds.com/cdn/shop/articles/two-white-ducks-in-grass.jpg?v=1706873608 sample image to plug into src if you would like to see it working,
